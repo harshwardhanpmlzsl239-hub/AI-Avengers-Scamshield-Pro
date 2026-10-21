@@ -253,4 +253,69 @@ $("message").value=sample;analyze()});
 $("clear").addEventListener("click",()=>{$("message").value="";$("result").classList.remove("show");$("message").focus()});
 </script>
 </body>
+</html>ese tools. This prototype does not connect to threat-intelligence databases or perform actual AI deepfake detection.</p>
+  <p>Stay alert. Verify before you trust.</p>
+ </div>
+</footer>
+
+<script>
+function showResult(id, title, level, color, intro, items) {
+ const el = document.getElementById(id);
+ el.className = "result show";
+ el.innerHTML = "<span class='pill "+color+"'>"+level+"</span><h4>"+title+"</h4><p>"+intro+"</p><ul>"+items.map(x=>"<li>"+x+"</li>").join("")+"</ul>";
+}
+
+function checkMessage() {
+ const s = document.getElementById("message").value.trim();
+ if (!s) { alert("Paste a message first."); return; }
+ const rules = [
+  ["urgent pressure",/urgent|immediately|within \d+ hours|act now|account.{0,20}(blocked|suspend)/i],
+  ["prize or reward claim",/you (have )?won|claim (your )?(prize|reward)|lottery|free gift/i],
+  ["credential request",/otp|one.time password|password|pin number|share.{0,20}(otp|pin|password)/i],
+  ["money request",/send money|transfer money|payment required|pay now|upi pin/i],
+  ["suspicious link",/https?:\/\/|www\./i],
+  ["impersonation warning",/verify.{0,20}(account|identity)|kyc|bank.{0,20}(blocked|suspend)/i]
+ ];
+ const found = rules.filter(r=>r[1].test(s)).map(r=>r[0]);
+ const level = found.length >= 3 ? "HIGHER CONCERN" : found.length ? "CAUTION" : "NO RULES TRIGGERED";
+ const color = found.length >= 3 ? "danger" : found.length ? "warn" : "safe";
+ showResult("messageResult","Preliminary message assessment",level,color,
+  found.length ? "This message contains patterns that deserve closer review." : "No configured warning pattern was detected. This does not establish that the message is genuine.",
+  [...(found.length ? found.map(x=>"Warning sign: "+x) : ["No configured warning rules matched."]), "Do not click unexpected links or share confidential information.", "Verify claims with the organization using its official contact details."]);
+}
+
+function checkLink() {
+ const raw = document.getElementById("url").value.trim();
+ if (!raw) { alert("Enter a URL first."); return; }
+ let u;
+ try {
+  u = new URL(raw);
+  if (!["http:","https:"].includes(u.protocol)) throw Error();
+ } catch(e) {
+  showResult("linkResult","URL assessment","INVALID FORMAT","danger",
+   "This input is not a valid HTTP or HTTPS URL.",
+   ["Check the spelling and full address.", "Do not open a link just to test it."]);
+  return;
+ }
+ const host = u.hostname.toLowerCase();
+ const flags = [];
+ if (u.protocol !== "https:") flags.push("The connection does not use HTTPS.");
+ if (u.username || u.password) flags.push("The address contains user-information fields.");
+ if (host.includes("xn--")) flags.push("The domain uses punycode, which can be used in lookalike domains.");
+ if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host)) flags.push("The host is an IP address rather than a typical domain name.");
+ if (host.split(".").length >= 5) flags.push("The hostname contains many subdomain levels.");
+ if (/@/.test(raw)) flags.push("The address contains an @ character; check which host the browser will visit.");
+ if (raw.length > 180) flags.push("The URL is unusually long; inspect it carefully.");
+ const level = flags.length ? "CAUTION — REVIEW NEEDED" : "NO BASIC FLAGS FOUND";
+ showResult("linkResult","Preliminary URL assessment",level,flags.length?"warn":"safe",
+  "Hostname: "+host,
+  [...(flags.length ? flags : ["No basic URL-format warning rules were triggered."]), "This checker does not visit or verify the destination.", "It cannot confirm reputation, malware, phishing status, or whether a site is safe."]);
+}
+</script>
+</body>
+</html>
+$("message").value=sample;analyze()});
+$("clear").addEventListener("click",()=>{$("message").value="";$("result").classList.remove("show");$("message").focus()});
+</script>
+</body>
 </html>
