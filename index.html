@@ -3,192 +3,243 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080d19">
-<meta name="description" content="AI Avengers ScamShield - a cybersecurity awareness and scam detection prototype.">
+<meta name="description" content="AI Avengers ScamShield - online scam awareness and security tools.">
 <title>ScamShield | AI Avengers</title>
 <style>
-:root {
-  --bg:#080d19; --panel:#101a2b; --line:#23334c;
-  --blue:#48aaff; --cyan:#5cebd1; --text:#edf5ff;
-  --muted:#9aabc2; --red:#ff657c; --yellow:#ffd166;
-}
+:root{--bg:#080d19;--panel:#111c30;--line:#293a55;--blue:#50aaff;--cyan:#5cebd1;--text:#edf5ff;--muted:#9aabc2;--red:#ff657c;--yellow:#ffd166}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;background:radial-gradient(ellipse at top,#102544 0%,var(--bg) 48%);
- color:var(--text);font-family:system-ui,-apple-system,sans-serif;
-}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:radial-gradient(ellipse at top,#142b4a,var(--bg) 60%);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+a{color:var(--cyan);text-decoration:none}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-a{color:var(--cyan);text-decoration:none}
 .wrap{max-width:1120px;margin:auto;padding:0 20px}
-header{border-bottom:1px solid var(--line);background:#080d19eF;position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}
-.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+header{position:sticky;top:0;z-index:10;background:#080d19ed;border-bottom:1px solid var(--line);backdrop-filter:blur(15px)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:18px}
-.logo{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#267cff,#4ce5d0);color:#071322;font-size:23px}
+.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#267cff,#4ce5d0);display:grid;place-items:center;color:#071322;font-size:25px}
 .brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}
-nav{display:flex;gap:17px;flex-wrap:wrap}
-nav a{color:var(--muted);font-size:13px}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{font-size:13px;color:var(--muted)}
 nav a:hover{color:var(--cyan)}
-.hero{padding:65px 0 35px}
-.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:2px;font-weight:800}
-h1{font-size:clamp(36px,7vw,65px);line-height:1.06;letter-spacing:-2px;margin:16px 0}
-.gradient{background:linear-gradient(90deg,#fff,#55b5ff,#61eed6);color:transparent;background-clip:text}
+.hero{padding:62px 0 30px}
+.eyebrow{font-size:11px;letter-spacing:2px;font-weight:850;color:var(--cyan)}
+h1{font-size:clamp(38px,7vw,66px);line-height:1.06;letter-spacing:-2px;margin:15px 0}
+.gradient{background:linear-gradient(90deg,#fff,#60b9ff,#61eed6);background-clip:text;color:transparent}
 p{line-height:1.7;color:var(--muted)}
 .hero p{max-width:650px;font-size:16px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.btn{border:1px solid var(--line);border-radius:11px;padding:12px 17px;color:var(--text);background:#15233a;font-weight:700}
-.btn.primary{background:linear-gradient(100deg,#3e9cff,#52e2d1);color:#071322;border:0}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-block;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:#182740;color:var(--text);font-weight:750}
+.btn.primary{background:linear-gradient(100deg,#48a4ff,#54e3d0);color:#071322;border:0}
 .btn:hover{filter:brightness(1.12)}
-.notice{border:1px solid #24465c;background:#0e2130;border-radius:12px;padding:13px 16px;font-size:12px;color:#b9d8e9;margin:25px 0}
-.section{padding:30px 0 45px;scroll-margin-top:85px}
-.section-head{margin-bottom:22px}
-h2{font-size:27px;margin:0 0 7px}
-.section-head p{margin:0;font-size:14px}
+.notice{margin:22px 0;border:1px solid #24465c;background:#0d2030;border-radius:12px;padding:13px 15px;font-size:12px;color:#c1dce9}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat{border:1px solid var(--line);border-radius:13px;padding:16px;background:#111c30}
+.stat strong{display:block;font-size:22px;color:var(--cyan)}
+.stat span{font-size:12px;color:var(--muted)}
+.section{padding:28px 0 42px}
+.section-head{margin-bottom:20px}
+h2{font-size:27px;margin:7px 0}
+.section-head p{font-size:14px;margin:0}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.card{background:linear-gradient(145deg,#121f33,#0c1423);border:1px solid var(--line);border-radius:18px;padding:23px;min-width:0}
-.card:hover{border-color:#3c6588}
-.card-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;background:#172e49;font-size:24px;margin-bottom:17px}
-.card h3{margin:0 0 7px;font-size:19px}
-.card p{font-size:13px;margin:0 0 18px}
-label{display:block;font-size:13px;font-weight:700;margin:13px 0 8px}
-textarea,input{width:100%;background:#080f1d;border:1px solid #30415b;border-radius:10px;padding:13px;color:var(--text);outline:none}
-textarea{min-height:125px;resize:vertical}
+.card{min-width:0;background:linear-gradient(145deg,#142139,#0c1423);border:1px solid var(--line);border-radius:17px;padding:22px}
+.card:hover{border-color:#426a91}
+.card-icon{width:44px;height:44px;border-radius:12px;background:#1a304b;display:grid;place-items:center;font-size:23px;margin-bottom:15px}
+h3{margin:0 0 7px;font-size:19px}
+.card p{font-size:13px;margin:0 0 14px}
+label{display:block;font-size:13px;font-weight:700;margin:12px 0 7px}
+textarea,input:not([type=checkbox]){display:block;width:100%;min-width:0;background:#080f1d;color:var(--text);border:1px solid #30415b;border-radius:10px;padding:13px;outline:none}
+textarea{min-height:115px;resize:vertical}
 textarea:focus,input:focus{border-color:var(--blue)}
-.card .btn{width:100%;margin-top:12px}
-.result{display:none;margin-top:16px;padding:15px;border:1px solid var(--line);background:#0a1423;border-radius:12px;overflow-wrap:anywhere}
+.card>.btn{width:100%;margin-top:12px;text-align:center}
+.result{display:none;margin-top:15px;padding:14px;border:1px solid var(--line);background:#091321;border-radius:11px;overflow-wrap:anywhere}
 .result.show{display:block}
-.result h4{margin:0 0 8px}
+.result h4{margin:10px 0 5px}
+.result p{margin:6px 0}
 .result ul{padding-left:20px;color:var(--muted);font-size:13px;line-height:1.8}
-.pill{display:inline-block;border-radius:20px;padding:5px 10px;font-size:11px;font-weight:800;background:#203248;color:#bfe7ff}
+.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#203248;font-size:10px;font-weight:850}
 .safe{color:var(--cyan)}.warn{color:var(--yellow)}.danger{color:var(--red)}
 .tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.mini{border:1px solid var(--line);background:#101a2b;border-radius:15px;padding:18px}
+.mini{background:#111c30;border:1px solid var(--line);border-radius:14px;padding:18px}
 .mini strong{display:block;margin:8px 0}
 .mini p{font-size:12px;margin:0}
-.checklist{list-style:none;padding:0;margin:15px 0}
-.checklist li{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.5}
-.checklist input{width:auto;margin-right:9px;accent-color:var(--cyan)}
+.checklist{list-style:none;padding:0;margin:12px 0}
+.checklist li{border-bottom:1px solid var(--line);padding:10px 0;font-size:13px;line-height:1.5}
+.checklist label{display:flex;align-items:flex-start;gap:8px;margin:0;font-weight:500}
+.checklist input{margin-top:4px;accent-color:var(--cyan);flex-shrink:0}
 .small{font-size:12px!important}
-footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:12px;color:var(--muted)}
+footer{margin-top:15px;border-top:1px solid var(--line);padding:28px 0 40px;font-size:12px}
 footer strong{color:var(--text)}
-@media(max-width:680px){
- .nav{align-items:flex-start;padding:13px 0;flex-direction:column}
- nav{gap:13px}
- .hero{padding-top:42px}
- .grid,.tools{grid-template-columns:1fr}
- .card{padding:19px}
- h1{letter-spacing:-1px}
-}
+@media(max-width:680px){.nav{align-items:flex-start;flex-direction:column;padding:12px 0}nav{gap:12px}.hero{padding-top:40px}.grid,.tools{grid-template-columns:1fr}.card{padding:18px}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:18px}h1{letter-spacing:-1px}}
 </style>
 </head>
 <body>
 <header>
- <div class="wrap nav">
-  <div class="brand"><div class="logo">⬡</div>
-   <div>SCAMSHIELD<small>AI AVENGERS · PROJECT SEVA</small></div>
-  </div>
-  <nav>
-   <a href="#home">Home</a><a href="#tools">Tools</a>
-   <a href="#deepfake">Deepfake Safety</a><a href="#learn">Learn</a>
-  </nav>
- </div>
+<div class="wrap nav">
+<div class="brand"><div class="logo">⬡</div><div>SCAMSHIELD<small>AI AVENGERS · PROJECT SEVA</small></div></div>
+<nav aria-label="Main navigation">
+<a href="#home">Home</a><a href="#tools">Tools</a><a href="#deepfake">Deepfake Safety</a><a href="#learn">Learn</a>
+</nav>
+</div>
 </header>
 
 <main class="wrap">
 <section class="hero" id="home">
- <div class="eyebrow">◉ YOUR DIGITAL SAFETY COMPANION</div>
- <h1>Think before<br>you <span class="gradient">click.</span></h1>
- <p>Spot suspicious messages, examine risky links, and learn how to protect yourself from online fraud. A cybersecurity awareness prototype built by AI Avengers.</p>
- <div class="actions">
-  <a class="btn primary" href="#tools">Explore security tools ↗</a>
-  <a class="btn" href="#deepfake">Deepfake safety</a>
- </div>
- <div class="notice">⚠ Prototype notice: Results use simple browser-based warning rules. They are not definitive AI predictions, and a clean result never guarantees safety.</div>
+<div class="eyebrow">◉ YOUR DIGITAL SAFETY COMPANION</div>
+<h1>Think before<br>you <span class="gradient">click.</span></h1>
+<p>Spot suspicious messages, inspect risky links, and learn how to protect yourself from online fraud. A cybersecurity awareness prototype by AI Avengers.</p>
+<div class="actions"><a class="btn primary" href="#tools">Explore security tools ↗</a><a class="btn" href="#deepfake">Deepfake safety</a></div>
+<div class="stats">
+<div class="stat"><strong>04</strong><span>Safety tools</span></div>
+<div class="stat"><strong>24/7</strong><span>Learn safely</span></div>
+<div class="stat"><strong>100%</strong><span>Browser-based checks</span></div>
+</div>
+<div class="notice">⚠ Prototype: Message and link checks use basic rules, not a trained AI model or live threat database. A result cannot guarantee safety.</div>
 </section>
 
 <section class="section" id="tools">
- <div class="section-head"><div class="eyebrow">SECURITY LAB</div>
-  <h2>Explore your tools</h2>
-  <p>Run preliminary checks directly in your browser.</p>
- </div>
- <div class="grid">
-  <article class="card">
-   <div class="card-icon">✉️</div>
-   <h3>Scam Message Detector</h3>
-   <p>Check messages for common fraud indicators, suspicious requests and pressure tactics.</p>
-   <label for="message">Paste a suspicious message</label>
-   <textarea id="message" placeholder="Example: Your account is blocked. Verify immediately to claim your prize..."></textarea>
-   <button class="btn primary" onclick="checkMessage()">Analyze message</button>
-   <div class="result" id="messageResult" aria-live="polite"></div>
-  </article>
+<div class="section-head"><div class="eyebrow">SECURITY LAB</div><h2>Explore your tools</h2><p>Use the tools below for preliminary checks.</p></div>
+<div class="grid">
+<article class="card">
+<div class="card-icon">✉️</div><h3>Scam Message Detector</h3>
+<p>Check messages for common fraud indicators and suspicious requests.</p>
+<label for="message">Paste a suspicious message</label>
+<textarea id="message" placeholder="Example: Your account is blocked. Verify immediately to claim your prize..."></textarea>
+<button class="btn primary" id="analyzeMessage">Analyze message</button>
+<div class="result" id="messageResult" aria-live="polite"></div>
+</article>
 
-  <article class="card">
-   <div class="card-icon">🔗</div>
-   <h3>Link Risk Checker</h3>
-   <p>Inspect a URL for suspicious formatting and common phishing warning signs.</p>
-   <label for="url">Enter the complete URL</label>
-   <input id="url" type="url" placeholder="https://example.com">
-   <button class="btn primary" onclick="checkLink()">Inspect link</button>
-   <div class="result" id="linkResult" aria-live="polite"></div>
-  </article>
+<article class="card">
+<div class="card-icon">🔗</div><h3>Link Risk Checker</h3>
+<p>Inspect a URL for suspicious formatting and common phishing warning signs.</p>
+<label for="url">Enter the complete URL</label>
+<input id="url" type="text" placeholder="https://example.com" autocomplete="url">
+<button class="btn primary" id="analyzeLink">Inspect link</button>
+<div class="result" id="linkResult" aria-live="polite"></div>
+</article>
 
-  <article class="card" id="deepfake">
-   <div class="card-icon">🎭</div>
-   <h3>Deepfake Safety Assistant</h3>
-   <p>Use these verification steps when a video, voice note, or identity seems suspicious.</p>
-   <ul class="checklist">
-    <li><label><input type="checkbox"> Verify the person's identity through a separate trusted channel.</label></li>
-    <li><label><input type="checkbox"> Check the original source and date of the media.</label></li>
-    <li><label><input type="checkbox"> Look for inconsistencies in speech, context, and lip movement.</label></li>
-    <li><label><input type="checkbox"> Confirm unusual money requests with the real person.</label></li>
-   </ul>
-   <p class="small">No single visual or audio clue proves that media is fake or genuine.</p>
-  </article>
+<article class="card" id="deepfake">
+<div class="card-icon">🎭</div><h3>Deepfake Safety Assistant</h3>
+<p>Verify suspicious videos, voice notes, or identity claims before trusting them.</p>
+<ul class="checklist">
+<li><label><input type="checkbox"> Verify identity through a separate trusted channel.</label></li>
+<li><label><input type="checkbox"> Check the original source and publication date.</label></li>
+<li><label><input type="checkbox"> Look for inconsistencies in speech, context, or lip movement.</label></li>
+<li><label><input type="checkbox"> Confirm unusual money requests directly with the person.</label></li>
+</ul>
+<p class="small">No single visual or audio clue proves that media is fake or genuine.</p>
+</article>
 
-  <article class="card">
-   <div class="card-icon">🛡️</div>
-   <h3>Personal Safety Checklist</h3>
-   <p>Check your everyday digital safety habits.</p>
-   <ul class="checklist">
-    <li><label><input type="checkbox"> I use unique passwords for important accounts.</label></li>
-    <li><label><input type="checkbox"> I enable two-step verification where available.</label></li>
-    <li><label><input type="checkbox"> I never share OTPs, PINs, or passwords.</label></li>
-    <li><label><input type="checkbox"> I verify payment requests before sending money.</label></li>
-    <li><label><input type="checkbox"> I keep my apps and phone updated.</label></li>
-   </ul>
-  </article>
- </div>
+<article class="card">
+<div class="card-icon">🛡️</div><h3>Personal Safety Checklist</h3>
+<p>Review your everyday digital safety habits.</p>
+<ul class="checklist">
+<li><label><input type="checkbox"> Use unique passwords for important accounts.</label></li>
+<li><label><input type="checkbox"> Enable two-step verification where available.</label></li>
+<li><label><input type="checkbox"> Never share OTPs, PINs, or passwords.</label></li>
+<li><label><input type="checkbox"> Verify payment requests before sending money.</label></li>
+<li><label><input type="checkbox"> Keep your phone and apps updated.</label></li>
+</ul>
+</article>
+</div>
 </section>
 
 <section class="section" id="learn">
- <div class="section-head"><div class="eyebrow">STAY INFORMED</div>
-  <h2>Know the warning signs</h2>
-  <p>Simple habits can help you avoid common online scams.</p>
- </div>
- <div class="tools">
-  <article class="mini"><div class="card-icon">🚨</div><strong>Urgent demands</strong><p>Unexpected threats, prizes, or pressure to act immediately deserve extra scrutiny.</p></article>
-  <article class="mini"><div class="card-icon">🔐</div><strong>Secret credentials</strong><p>Never disclose OTPs, UPI PINs, passwords, or recovery codes to callers or message senders.</p></article>
-  <article class="mini"><div class="card-icon">☎️</div><strong>Verify independently</strong><p>Contact banks, companies, or friends through an official number or trusted channel.</p></article>
- </div>
- <div class="card" style="margin-top:16px">
-  <h3>Suspect a financial cyber fraud in India?</h3>
-  <p>Contact your bank immediately and report suspected cyber financial fraud through the official Indian cybercrime helpline.</p>
-  <div class="actions">
-   <a class="btn primary" href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">Official cybercrime portal ↗</a>
-   <a class="btn" href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India ↗</a>
-  </div>
-  <p class="small">India's cyber financial fraud helpline: 1930. Use official channels and act promptly.</p>
- </div>
+<div class="section-head"><div class="eyebrow">STAY INFORMED</div><h2>Know the warning signs</h2><p>Simple habits can help you avoid common online scams.</p></div>
+<div class="tools">
+<article class="mini"><div class="card-icon">🚨</div><strong>Urgent demands</strong><p>Unexpected threats, prizes, or pressure to act immediately deserve extra scrutiny.</p></article>
+<article class="mini"><div class="card-icon">🔐</div><strong>Secret credentials</strong><p>Never disclose OTPs, UPI PINs, passwords, or recovery codes to callers or message senders.</p></article>
+<article class="mini"><div class="card-icon">☎️</div><strong>Verify independently</strong><p>Contact banks, companies, or friends using a trusted number or official channel.</p></article>
+</div>
+<div class="card" style="margin-top:16px">
+<h3>Suspect a cyber financial fraud in India?</h3>
+<p>Contact your bank promptly. You can report suspected cybercrime through the official government portal.</p>
+<div class="actions"><a class="btn primary" href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">Official cybercrime portal ↗</a><a class="btn" href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India ↗</a></div>
+<p class="small">India's cyber financial fraud helpline: 1930.</p>
+</div>
 </section>
 </main>
 
-<footer>
- <div class="wrap">
-  <strong>⬡ AI Avengers ScamShield</strong>
-  <p>Project Seva · Cybersecurity awareness prototype</p>
-  <p>Checks run in your browser. No message or URL is uploaded by these tools. This prototype does not connect to threat-intelligence databases or perform actual AI deepfake detection.</p>
+<footer><div class="wrap">
+<strong>⬡ AI Avengers ScamShield</strong>
+<p>Project Seva · Cybersecurity awareness prototype</p>
+<p>Message and URL checks run locally in your browser. This prototype does not upload inputs, query live threat databases, or perform actual AI deepfake detection.</p>
+<p>Stay alert. Verify before you trust.</p>
+</div></footer>
+
+<script>
+"use strict";
+
+function showResult(id,title,level,color,intro,items){
+const el=document.getElementById(id);
+el.replaceChildren();
+const badge=document.createElement("span");
+badge.className="pill "+color;
+badge.textContent=level;
+const heading=document.createElement("h4");
+heading.textContent=title;
+const paragraph=document.createElement("p");
+paragraph.textContent=intro;
+const list=document.createElement("ul");
+items.forEach(item=>{
+const li=document.createElement("li");
+li.textContent=item;
+list.appendChild(li);
+});
+el.append(badge,heading,paragraph,list);
+el.classList.add("show");
+}
+
+document.getElementById("analyzeMessage").addEventListener("click",()=>{
+const s=document.getElementById("message").value.trim();
+if(!s){showResult("messageResult","Message assessment","INPUT NEEDED","warn","Paste a message to begin.",["Never share OTPs, PINs, or passwords."]);return;}
+const rules=[
+["urgent pressure",/urgent|immediately|within\s+\d+\s+hours|act now|account.{0,30}(blocked|suspend)/i],
+["prize or reward claim",/you (have )?won|claim (your )?(prize|reward)|lottery|free gift/i],
+["credential request",/otp|one.time password|password|pin number|share.{0,30}(otp|pin|password)/i],
+["money request",/send money|transfer money|payment required|pay now|upi pin/i],
+["link included",/https?:\/\/|www\./i],
+["account verification pressure",/verify.{0,30}(account|identity)|kyc|bank.{0,30}(blocked|suspend)/i]
+];
+const found=rules.filter(r=>r[1].test(s)).map(r=>r[0]);
+const level=found.length>=3?"HIGHER CONCERN":found.length?"CAUTION":"NO RULES TRIGGERED";
+const color=found.length>=3?"danger":found.length?"warn":"safe";
+showResult("messageResult","Preliminary message assessment",level,color,
+found.length?"This message contains patterns that deserve closer review.":"No configured warning pattern was detected. That does not prove the message is genuine.",
+[...(found.length?found.map(x=>"Warning sign: "+x):["No configured warning rules matched."]),"Do not click unexpected links or share confidential information.","Verify claims using official contact details."]);
+});
+
+document.getElementById("analyzeLink").addEventListener("click",()=>{
+const raw=document.getElementById("url").value.trim();
+if(!raw){showResult("linkResult","URL assessment","INPUT NEEDED","warn","Enter a URL to begin.",["Do not open a suspicious link just to test it."]);return;}
+let u;
+try{
+u=new URL(raw);
+if(!["http:","https:"].includes(u.protocol)||!u.hostname||!u.hostname.includes("."))throw Error();
+}catch(e){
+showResult("linkResult","URL assessment","INVALID FORMAT","danger","This does not look like a valid HTTP or HTTPS URL.",["Check the spelling and include the domain name.","Do not visit a suspicious URL to test it."]);
+return;
+}
+const host=u.hostname.toLowerCase();
+const flags=[];
+if(u.protocol!=="https:")flags.push("The connection does not use HTTPS.");
+if(u.username||u.password)flags.push("The URL contains user-information fields.");
+if(host.includes("xn--"))flags.push("The domain uses punycode, which can appear in lookalike domains.");
+if(/^\d{1,3}(\.\d{1,3}){3}$/.test(host))flags.push("The host is an IP address instead of a typical domain.");
+if(host.split(".").length>=5)flags.push("The hostname has many subdomain levels.");
+if(raw.includes("@"))flags.push("The URL contains an @ character. Carefully inspect the actual hostname.");
+if(raw.length>180)flags.push("The URL is unusually long.");
+const level=flags.length?"CAUTION — REVIEW NEEDED":"NO BASIC FLAGS FOUND";
+showResult("linkResult","Preliminary URL assessment",level,flags.length?"warn":"safe",
+"Hostname: "+host,
+[...(flags.length?flags:["No basic URL-format warning rules were triggered."]),"This checker does not visit the destination or check its reputation.","It cannot confirm whether a website contains malware or phishing content."]);
+});
+</script>
+</body>
+</html>
+ese tools. This prototype does not connect to threat-intelligence databases or perform actual AI deepfake detection.</p>
   <p>Stay alert. Verify before you trust.</p>
  </div>
 </footer>
