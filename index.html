@@ -4,1041 +4,699 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#07111f">
-<meta name="description" content="AI Avengers ScamShield Sentinel — a privacy-first scam awareness and detection prototype.">
-<title>AI Avengers | ScamShield Sentinel</title>
+<meta name="theme-color" content="#071711">
+<meta name="description" content="AI Avengers ScamShield Sentinel — privacy-conscious scam awareness and cybersecurity education.">
+<title>ScamShield Sentinel | Aurora Intelligence</title>
 <style>
-:root {
-  color-scheme: dark;
-  --bg: #06101d;
-  --panel: #0b1b2c;
-  --panel2: #10243a;
-  --line: #203b53;
-  --cyan: #47e8f3;
-  --blue: #63a9ff;
-  --text: #edf7ff;
-  --muted: #9bb1c6;
-  --green: #59e4b1;
-  --yellow: #ffd166;
-  --red: #ff7588;
-  --radius: 18px;
+:root{
+  color-scheme:dark;
+  --bg:#06110e;--panel:#0c1d17;--panel2:#10271e;
+  --line:#234337;--text:#e8f5ed;--muted:#96b4a5;
+  --teal:#55edc1;--green:#a7f3b6;--gold:#ffd38a;
+  --red:#ff8c91;--radius:20px;
+  --shadow:0 18px 55px #0004;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background:
-    radial-gradient(ellipse at 10% 0%, #10304a 0%, transparent 38%),
-    radial-gradient(ellipse at 100% 20%, #10253c 0%, transparent 35%),
-    var(--bg);
-  color: var(--text);
-  font: 15px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:
+radial-gradient(ellipse at 85% 0%,#174a343b,transparent 36%),
+radial-gradient(ellipse at 0% 30%,#087b6220,transparent 34%),var(--bg);
+color:var(--text);font:15px/1.6 system-ui,-apple-system,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,
+select:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+a{color:var(--teal)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.wrap{width:min(1200px,100% - 32px);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#071711ed;
+backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);font-weight:850;letter-spacing:-.5px}
+.logo{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;
+background:linear-gradient(145deg,#5cf3c4,#237e5e);color:#062016;font-size:23px;
+box-shadow:0 0 30px #39e6b222}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:600}
+nav{display:flex;gap:5px;flex-wrap:wrap}
+nav a{padding:9px 10px;border-radius:10px;text-decoration:none;color:var(--muted);font-size:12px}
+nav a:hover,nav a:focus-visible{background:var(--panel2);color:var(--teal)}
+.hero{padding:58px 0 30px;display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:center}
+.eyebrow{color:var(--teal);font-size:11px;letter-spacing:2px;font-weight:800;text-transform:uppercase}
+h1{font-size:clamp(34px,5.5vw,61px);line-height:1.04;letter-spacing:-2.5px;margin:14px 0}
+h1 span{background:linear-gradient(90deg,#a5f7c0,#4de7c5);background-clip:text;color:transparent}
+h2{font-size:23px;line-height:1.2;margin:0 0 8px;letter-spacing:-.5px}
+h3{font-size:15px;margin:0 0 8px}
+p{color:var(--muted);margin:7px 0 14px}
+.hero p{max-width:620px;font-size:16px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{border:1px solid var(--line);border-radius:12px;padding:11px 15px;
+background:#14281f;color:var(--text);font-weight:700}
+.btn.primary{background:linear-gradient(120deg,#9cf5b6,#42dcb7);color:#062016;border:0}
+.btn:hover{filter:brightness(1.12)}
+.hero-art{min-height:230px;border:1px solid #2d5b46;border-radius:26px;
+background:linear-gradient(145deg,#143a2a,#0a1b15 75%);padding:24px;
+position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.orb{width:135px;height:135px;border-radius:50%;margin:5px auto 18px;
+display:grid;place-items:center;font-size:54px;color:var(--teal);
+border:1px solid #4cdbac7a;
+background:radial-gradient(circle,#4ce6ba28,transparent 70%);
+box-shadow:0 0 50px #3ae7b51b,inset 0 0 30px #3ae7b515}
+.art-caption{text-align:center;font-size:12px;color:var(--muted)}
+.section{padding:22px 0 35px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:16px}
+.section-head p{margin:4px 0 0;font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:99px;
+background:#163a2a;color:var(--teal);border:1px solid #285941;font-size:10px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px}
+.card{grid-column:span 4;background:linear-gradient(150deg,#10241b,#0b1914);
+border:1px solid var(--line);border-radius:var(--radius);padding:20px;
+box-shadow:0 8px 32px #00000010;min-width:0}
+.card.wide{grid-column:span 8}
+.card.full{grid-column:1/-1}
+.card h2{font-size:20px}
+.icon{width:43px;height:43px;display:grid;place-items:center;border-radius:14px;
+background:#174333;color:var(--teal);font-size:21px;margin-bottom:15px}
+.field{display:block;margin:15px 0 7px;font-size:12px;font-weight:750;color:#cde2d5}
+textarea,input[type=text],input[type=url],select{width:100%;padding:13px;
+background:#07140f;color:var(--text);border:1px solid #315342;border-radius:12px}
+textarea{min-height:135px;resize:vertical}
+textarea::placeholder,input::placeholder{color:#729385}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row .btn{margin-top:10px}
+.result{margin-top:16px;border:1px solid var(--line);border-radius:14px;padding:15px;
+background:#07140f}
+.result h3{margin-bottom:8px}
+.status{font-weight:850;font-size:17px}
+.status.safe{color:var(--green)}.status.warn{color:var(--gold)}.status.danger{color:var(--red)}
+.muted{color:var(--muted);font-size:12px}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.tag{border:1px solid var(--line);padding:5px 8px;border-radius:8px;font-size:11px;color:#c7e0d1}
+ul.clean{padding-left:19px;color:var(--muted)}
+ul.clean li{margin:6px 0}
+.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:#0a1913;border:1px solid var(--line);border-radius:16px;padding:17px}
+.stat strong{display:block;font-size:27px;letter-spacing:-1px;color:var(--teal)}
+.stat span{display:block;color:var(--muted);font-size:11px}
+.bar{height:8px;border-radius:10px;background:#1b3529;overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,#37bd91,#8ef0c1);border-radius:10px}
+.quiz-option{display:block;width:100%;text-align:left;padding:12px;border:1px solid var(--line);
+border-radius:12px;background:#0a1913;color:var(--text);margin:8px 0}
+.quiz-option:hover{border-color:var(--teal)}
+.quiz-option:disabled{opacity:1}
+.checkline{display:flex;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid #1b3529;color:#d2e4d8}
+.checkline input{accent-color:#51e8bd;margin-top:5px;width:17px;height:17px;flex-shrink:0}
+.receipt{font:12px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+canvas{display:block;width:100%;height:180px}
+.notice{border-left:3px solid var(--gold);padding:10px 13px;background:#ffcf7a0b;
+color:var(--muted);font-size:12px;margin-top:12px}
+footer{border-top:1px solid var(--line);padding:27px 0 35px;color:var(--muted);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.hidden{display:none!important}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+background:#d8ffeb;color:#062016;padding:11px 16px;border-radius:12px;
+font-weight:700;font-size:13px;z-index:30;box-shadow:var(--shadow);max-width:90vw}
+@media(max-width:850px){
+ .hero{grid-template-columns:1fr;padding-top:37px}
+ .hero-art{min-height:190px}
+ .card{grid-column:span 6}.card.wide{grid-column:span 12}
+ nav{justify-content:flex-end}nav a{padding:7px;font-size:11px}
 }
-button, input, textarea { font: inherit; }
-button, a, input, textarea { outline-offset: 3px; }
-:focus-visible { outline: 2px solid var(--cyan); }
-a { color: var(--cyan); }
-button {
-  border: 1px solid #28647b;
-  background: linear-gradient(135deg, #123a52, #102a43);
-  color: var(--text);
-  border-radius: 11px;
-  padding: 11px 15px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: border-color .2s, transform .2s, background .2s;
+@media(max-width:560px){
+ .wrap{width:calc(100% - 22px)}
+ .nav{padding:10px 0;align-items:flex-start;flex-direction:column;gap:8px}
+ nav{width:100%;justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap}
+ nav a{white-space:nowrap}
+ h1{letter-spacing:-1.5px}
+ .hero{padding-top:32px}
+ .card,.card.wide{grid-column:span 12;padding:16px}
+ .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .section-head{align-items:start;flex-direction:column}
+ .orb{width:105px;height:105px}
 }
-button:hover { border-color: var(--cyan); }
-button:active { transform: scale(.98); }
-button:disabled { opacity: .5; cursor: not-allowed; }
-button.secondary { background: #0b1928; border-color: var(--line); }
-button.primary {
-  background: linear-gradient(135deg, #087c91, #1754a0);
-  border-color: var(--cyan);
-}
-button.danger { border-color: #7e3b50; }
-textarea, input[type="text"] {
-  width: 100%;
-  background: #061320;
-  color: var(--text);
-  border: 1px solid #29445c;
-  border-radius: 12px;
-  padding: 13px;
-}
-textarea { min-height: 145px; resize: vertical; }
-textarea::placeholder, input::placeholder { color: #718ba1; }
-label { display: block; font-weight: 700; margin-bottom: 7px; }
-small, .muted { color: var(--muted); }
-header {
-  border-bottom: 1px solid #1d374d;
-  background: rgba(5, 15, 27, .9);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(14px);
-}
-.nav {
-  max-width: 1180px;
-  padding: 12px 20px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.brand { display: flex; align-items: center; gap: 10px; }
-.logo {
-  width: 42px; height: 42px;
-  display: grid; place-items: center;
-  border: 1px solid var(--cyan);
-  border-radius: 13px;
-  background: #0b2b40;
-  color: var(--cyan);
-  font-weight: 900;
-  font-size: 18px;
-  box-shadow: 0 0 22px #27dff31c;
-}
-.brand strong { display: block; letter-spacing: .3px; }
-.brand small { display: block; font-size: 11px; }
-.navlinks { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
-.navlinks a { font-size: 12px; font-weight: 700; text-decoration: none; }
-main { max-width: 1180px; padding: 26px 20px 50px; margin: auto; }
-.hero {
-  display: grid;
-  grid-template-columns: 1.4fr .8fr;
-  gap: 24px;
-  align-items: center;
-  padding: 28px 0 32px;
-}
-.eyebrow {
-  color: var(--cyan);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-h1 { font-size: clamp(32px, 5vw, 56px); line-height: 1.06; margin: 10px 0 16px; letter-spacing: -1.7px; }
-h1 span { color: var(--cyan); }
-h2 { font-size: 22px; margin: 0 0 7px; }
-h3 { font-size: 16px; margin: 0 0 7px; }
-p { margin-top: 5px; }
-.hero p { max-width: 650px; color: var(--muted); font-size: 16px; }
-.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-.radar-card {
-  border: 1px solid #22516b;
-  background: linear-gradient(145deg, #0d263b, #071321);
-  border-radius: 22px;
-  padding: 22px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.radar {
-  width: 174px; height: 174px;
-  border: 1px solid #23617b;
-  border-radius: 50%;
-  margin: 10px auto 18px;
-  position: relative;
-  display: grid; place-items: center;
-  background:
-    linear-gradient(90deg, transparent 49.5%, #22516b 50%, transparent 50.5%),
-    linear-gradient(transparent 49.5%, #22516b 50%, transparent 50.5%),
-    repeating-radial-gradient(circle, transparent 0 26px, #1b536b 27px 28px, transparent 29px 42px),
-    #082033;
-}
-.radar:before {
-  content: "";
-  position: absolute; inset: 0;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0deg, #38e7ed2c 65deg, transparent 90deg);
-  animation: sweep 5s linear infinite;
-}
-.radar-core {
-  z-index: 1; width: 48px; height: 48px;
-  border: 1px solid var(--cyan); border-radius: 50%;
-  display: grid; place-items: center; color: var(--cyan);
-  background: #0b3046; font-weight: 900;
-  box-shadow: 0 0 24px #47e8f340;
-}
-@keyframes sweep { to { transform: rotate(360deg); } }
-.status-line { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 12px; color: var(--green); }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; }
-.section { margin-top: 24px; scroll-margin-top: 90px; }
-.section-heading { display: flex; justify-content: space-between; gap: 15px; align-items: flex-end; margin-bottom: 14px; }
-.section-heading p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
-.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.panel {
-  min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 20px;
-  background: linear-gradient(145deg, #0d2032f2, #091625f5);
-  box-shadow: 0 12px 35px #00000014;
-}
-.panel-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
-.panel-icon {
-  flex: 0 0 42px; height: 42px;
-  border-radius: 12px; display: grid; place-items: center;
-  background: #10334a; color: var(--cyan); font-size: 20px;
-  border: 1px solid #24516a;
-}
-.panel-top p { color: var(--muted); font-size: 13px; margin: 0; }
-.field { margin: 13px 0; }
-.button-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
-.result {
-  margin-top: 15px; padding: 15px;
-  border-radius: 13px; border: 1px solid var(--line);
-  background: #071522; overflow-wrap: anywhere;
-}
-.result:empty { display: none; }
-.result h3 { margin-bottom: 5px; }
-.result.safe { border-color: #286b59; }
-.result.caution { border-color: #786132; }
-.result.danger { border-color: #7b3d50; }
-.result.neutral { border-color: #2d536d; }
-.pill {
-  display: inline-block; padding: 3px 9px; border-radius: 30px;
-  border: 1px solid var(--line); font-size: 11px; font-weight: 800;
-  letter-spacing: .4px; margin-bottom: 7px;
-}
-.pill.safe { color: var(--green); border-color: #286b59; }
-.pill.caution { color: var(--yellow); border-color: #786132; }
-.pill.danger { color: var(--red); border-color: #7b3d50; }
-.pill.neutral { color: var(--cyan); border-color: #2d536d; }
-.indicator-list { list-style: none; margin: 10px 0 0; padding: 0; }
-.indicator-list li {
-  border-top: 1px solid #1a3044; padding: 10px 0;
-  display: grid; grid-template-columns: 24px 1fr; gap: 7px;
-}
-.indicator-list li:first-child { border-top: 0; }
-.indicator-list strong { display: block; font-size: 13px; }
-.indicator-list span { color: var(--muted); font-size: 12px; }
-.score-wrap { display: flex; align-items: center; gap: 14px; margin: 12px 0; }
-.score {
-  width: 70px; height: 70px; border-radius: 50%;
-  border: 3px solid var(--cyan); display: grid; place-items: center;
-  font-size: 21px; font-weight: 900; color: var(--cyan); flex-shrink: 0;
-}
-.meter { height: 8px; border-radius: 9px; background: #152b3e; overflow: hidden; margin: 10px 0; }
-.meter span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--blue)); transition: width .3s; }
-.mini-stat { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--muted); }
-.checklist { list-style: none; padding: 0; margin: 12px 0; }
-.checklist li { display: flex; gap: 10px; margin: 10px 0; align-items: flex-start; }
-.checklist input { margin-top: 5px; accent-color: var(--cyan); width: 17px; height: 17px; flex-shrink: 0; }
-.checklist label { margin: 0; font-weight: 500; font-size: 13px; }
-.tip {
-  border-left: 3px solid var(--cyan); padding: 10px 12px;
-  background: #0c2838; color: #cce8f5; border-radius: 0 10px 10px 0;
-  font-size: 13px; margin-top: 12px;
-}
-.quiz-question { font-size: 18px; font-weight: 800; margin: 14px 0; }
-.answers { display: grid; gap: 9px; }
-.answer {
-  width: 100%; text-align: left; font-weight: 600;
-  background: #0a1928; border-color: #27445a;
-}
-.answer.correct { border-color: var(--green); background: #0b302b; }
-.answer.wrong { border-color: var(--red); background: #351b29; }
-.answer:disabled { opacity: 1; cursor: default; }
-.quiz-footer { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-top: 16px; }
-footer { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 22px; color: var(--muted); font-size: 12px; }
-footer p { margin: 6px 0; }
-.hidden { display: none !important; }
-hr { border: 0; border-top: 1px solid var(--line); margin: 16px 0; }
-:target { scroll-margin-top: 90px; }
-@media (max-width: 760px) {
-  .hero { grid-template-columns: 1fr; padding-top: 18px; }
-  .radar-card { display: none; }
-  .grid, .grid.three { grid-template-columns: 1fr; }
-  .nav { align-items: flex-start; padding: 10px 14px; }
-  .navlinks { gap: 8px 12px; }
-  .navlinks a { font-size: 11px; }
-  main { padding: 18px 14px 35px; }
-  .panel { padding: 16px; }
-  .section-heading { align-items: flex-start; flex-direction: column; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
-}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header>
-  <div class="nav">
-    <div class="brand" aria-label="AI Avengers ScamShield Sentinel">
-      <div class="logo" aria-hidden="true">A</div>
-      <div><strong>AI AVENGERS</strong><small>SCAMSHIELD SENTINEL</small></div>
-    </div>
-    <nav class="navlinks" aria-label="Main navigation">
-      <a href="#message-check">MESSAGE</a>
-      <a href="#url-check">LINKS</a>
-      <a href="#trust-receipt">RECEIPT</a>
-      <a href="#family-shield">FAMILY</a>
-      <a href="#cyber-arena">QUIZ</a>
-    </nav>
-  </div>
+ <div class="wrap nav">
+  <a class="brand" href="#home" aria-label="ScamShield home">
+   <span class="logo" aria-hidden="true">⌁</span>
+   <span>SCAMSHIELD<small>AI AVENGERS · SENTINEL</small></span>
+  </a>
+  <nav aria-label="Main navigation">
+   <a href="#detector">Scanner</a><a href="#deepfake">Deepfakes</a>
+   <a href="#arena">Cyber Arena</a><a href="#family">Family</a>
+   <a href="#analytics">Analytics</a>
+  </nav>
+ </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div>
-      <div class="eyebrow">● Project Seva · Cyber safety prototype</div>
-      <h1>Think before<br>you <span>trust.</span></h1>
-      <p>Meet your personal scam-awareness command center. Inspect suspicious messages and links, understand the warning signs, and learn safer digital habits — without sending your text to a server.</p>
-      <div class="hero-actions">
-        <button class="primary" id="startScan">⌕ Inspect a message</button>
-        <button class="secondary" id="loadDemo">▶ Load demo scenario</button>
-      </div>
-      <p><small>LOCAL-FIRST DESIGN · NO ACCOUNT · NO EXTERNAL LIBRARIES</small></p>
-    </div>
-    <div class="radar-card" aria-label="Decorative security radar">
-      <div class="eyebrow">SENTINEL SYSTEM</div>
-      <div class="radar"><div class="radar-core">AI+</div></div>
-      <div class="status-line"><span class="dot"></span> LOCAL CHECK ENGINE READY</div>
-      <small>Rule-based prototype · Not a live threat feed</small>
-    </div>
-  </section>
+<main class="wrap" id="home">
+ <section class="hero">
+  <div>
+   <div class="eyebrow">● Aurora Intelligence · Cyber safety</div>
+   <h1>Think smarter.<br><span>Stay one step ahead.</span></h1>
+   <p>A practical cybersecurity companion that helps you spot suspicious messages, inspect risky links, and learn safer digital habits.</p>
+   <div class="actions">
+    <a class="btn primary" href="#detector" style="text-decoration:none">⌕ Scan a message</a>
+    <a class="btn" href="#arena" style="text-decoration:none">Play Cyber Arena ↗</a>
+   </div>
+   <div class="tags">
+    <span class="tag">Local-first checks</span><span class="tag">No account required</span>
+    <span class="tag">Demo analytics labelled</span>
+   </div>
+  </div>
+  <div class="hero-art">
+   <div class="orb" aria-hidden="true">⬡</div>
+   <div class="art-caption"><strong style="color:var(--text)">SENTINEL CORE</strong><br>Awareness is your first line of defence.</div>
+  </div>
+ </section>
 
-  <section class="section" aria-labelledby="overview-title">
-    <div class="section-heading">
-      <div><div class="eyebrow">Your dashboard</div><h2 id="overview-title">Threat analysis workspace</h2><p>Each result explains which local rules matched.</p></div>
-    </div>
-    <div class="grid three">
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">⌕</div><div><h3>Scam DNA</h3><p>See the warning signs behind a result.</p></div></div>
-        <div class="mini-stat"><span>Latest message risk</span><strong id="messageMini">NOT CHECKED</strong></div>
-        <div class="meter"><span id="messageMeter"></span></div>
-      </div>
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">↗</div><div><h3>Link Sentinel</h3><p>Check URL structure for warning signs.</p></div></div>
-        <div class="mini-stat"><span>Latest URL risk</span><strong id="urlMini">NOT CHECKED</strong></div>
-        <div class="meter"><span id="urlMeter"></span></div>
-      </div>
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">◈</div><div><h3>Privacy status</h3><p>Text analysis runs in this page.</p></div></div>
-        <div class="mini-stat"><span>Server text upload</span><strong style="color:var(--green)">NONE</strong></div>
-        <div class="tip">Your inputs are not stored by this page or sent to a backend.</div>
-      </div>
-    </div>
-  </section>
+ <section class="section" aria-labelledby="overview-title">
+  <div class="section-head"><div><div class="eyebrow">Your workspace</div><h2 id="overview-title">Security overview</h2><p>Illustrative demo figures, not live threat intelligence.</p></div><span class="pill">DEMO MODE</span></div>
+  <div class="stat-grid">
+   <div class="stat"><strong>1,284</strong><span>Illustrative scans</span></div>
+   <div class="stat"><strong>327</strong><span>Example warnings</span></div>
+   <div class="stat"><strong>74%</strong><span>Example awareness score</span></div>
+   <div class="stat"><strong id="sessionScans">0</strong><span>Scans this session</span></div>
+  </div>
+ </section>
 
-  <section class="section" id="message-check" aria-labelledby="message-title">
-    <div class="section-heading">
-      <div><div class="eyebrow">Module 01 / Scam DNA</div><h2 id="message-title">Message intelligence</h2><p>Identify urgency, credential requests, money pressure, and suspicious promises.</p></div>
+ <section class="section" id="detector">
+  <div class="section-head"><div><div class="eyebrow">01 / Threat inspection</div><h2>Scam Detector</h2><p>Understand the warning signs. Your text is analysed in this browser.</p></div><span class="pill">LOCAL CHECK</span></div>
+  <div class="grid">
+   <article class="card wide">
+    <div class="icon" aria-hidden="true">⌕</div>
+    <h2>Inspect a message</h2>
+    <p>Paste a suspicious SMS, email, or chat message. Never paste passwords, OTPs, or private account details.</p>
+    <label class="field" for="messageInput">Message to inspect</label>
+    <textarea id="messageInput" maxlength="12000" placeholder="Example: Your account will be blocked! Verify immediately at example.invalid and share your OTP..."></textarea>
+    <div class="row">
+     <button class="btn primary" id="scanMessage">Analyse message</button>
+     <button class="btn" id="sampleMessage">Load demo example</button>
+     <button class="btn" id="clearMessage">Clear</button>
     </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">⌘</div><div><h3>Inspect a suspicious message</h3><p>Paste a message or SMS. Remove private information first.</p></div></div>
-        <div class="field">
-          <label for="messageInput">Message text</label>
-          <textarea id="messageInput" maxlength="10000" placeholder="Example: Your account will be blocked today. Verify your details at the link below..."></textarea>
-          <small id="messageCount">0 / 10000 characters</small>
-        </div>
-        <div class="button-row">
-          <button class="primary" id="checkMessage">Analyze message</button>
-          <button class="secondary" id="messageDemo">Use sample</button>
-          <button class="secondary" id="clearMessage">Clear</button>
-        </div>
-        <div class="tip">Privacy reminder: never paste passwords, OTPs, full card numbers, or private conversations you do not need to analyze.</div>
-      </div>
-      <div class="panel">
-        <h3>Scam DNA report</h3>
-        <p class="muted">Risk level and matched signals, with plain-language explanations.</p>
-        <div id="messageResult" class="result" role="status" aria-live="polite">
-          <span class="pill neutral">AWAITING INPUT</span>
-          <p>Run an analysis to view the local rule matches.</p>
-        </div>
-        <div id="dnaDetails"></div>
-      </div>
-    </div>
-  </section>
+    <div id="messageResult" class="result hidden" aria-live="polite"></div>
+   </article>
+   <article class="card">
+    <div class="icon" aria-hidden="true">↗</div>
+    <h2>URL safety check</h2>
+    <p>Check a link's visible structure for common warning signs. No website is contacted.</p>
+    <label class="field" for="urlInput">Paste a URL</label>
+    <input id="urlInput" type="url" maxlength="2048" placeholder="https://example.com">
+    <div class="row"><button class="btn primary" id="scanUrl">Inspect URL</button></div>
+    <div id="urlResult" class="result hidden" aria-live="polite"></div>
+    <div class="notice">A clean result does not mean a website is trustworthy. This tool does not check reputation, DNS, certificates, or page content.</div>
+   </article>
+  </div>
+ </section>
 
-  <section class="section" id="url-check" aria-labelledby="url-title">
-    <div class="section-heading">
-      <div><div class="eyebrow">Module 02 / Link Sentinel</div><h2 id="url-title">URL risk inspector</h2><p>Review the link's visible structure before deciding what to do.</p></div>
-    </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">↗</div><div><h3>Inspect a URL</h3><p>Checking a URL does not open it.</p></div></div>
-        <div class="field">
-          <label for="urlInput">Website address</label>
-          <input id="urlInput" type="text" maxlength="2048" placeholder="https://example.com/login" autocomplete="off" autocapitalize="off" spellcheck="false">
-        </div>
-        <div class="button-row">
-          <button class="primary" id="checkUrl">Check URL</button>
-          <button class="secondary" id="urlDemo">Use sample</button>
-          <button class="secondary" id="clearUrl">Clear</button>
-        </div>
-        <div class="tip">Do not open a suspicious link just to test it. A lock icon or HTTPS does not prove that a site is legitimate.</div>
-      </div>
-      <div class="panel">
-        <h3>Link analysis report</h3>
-        <div id="urlResult" class="result" role="status" aria-live="polite">
-          <span class="pill neutral">AWAITING INPUT</span>
-          <p>Enter a URL to inspect its structure.</p>
-        </div>
-        <div id="urlDetails"></div>
-      </div>
-    </div>
-  </section>
+ <section class="section" id="deepfake">
+  <div class="section-head"><div><div class="eyebrow">02 / Media literacy</div><h2>Deepfake Awareness</h2><p>Assess context and provenance, not just appearance.</p></div></div>
+  <div class="grid">
+   <article class="card">
+    <div class="icon">◉</div><h2>Pause before sharing</h2>
+    <p>AI-generated media can look convincing. No single visual clue proves something is fake.</p>
+    <ul class="clean">
+     <li>Look for the original source and publication date.</li>
+     <li>Check whether reputable independent sources confirm the claim.</li>
+     <li>Be cautious of urgent requests for money or secrecy.</li>
+     <li>Verify unexpected voice or video requests through another channel.</li>
+    </ul>
+   </article>
+   <article class="card wide">
+    <div class="icon">✓</div><h2>Media verification checklist</h2>
+    <p>Use these questions to organise your review. This is a checklist, not an AI detector.</p>
+    <label class="checkline"><input type="checkbox" class="mediaCheck"> I found the earliest available source.</label>
+    <label class="checkline"><input type="checkbox" class="mediaCheck"> I checked the date and surrounding context.</label>
+    <label class="checkline"><input type="checkbox" class="mediaCheck"> I looked for independent corroboration.</label>
+    <label class="checkline"><input type="checkbox" class="mediaCheck"> I independently verified any urgent request.</label>
+    <div class="result" aria-live="polite"><strong id="mediaProgress">0 of 4 checks completed</strong><div class="bar" style="margin-top:10px"><span id="mediaBar" style="width:0%"></span></div></div>
+   </article>
+  </div>
+ </section>
 
-  <section class="section" id="trust-receipt" aria-labelledby="receipt-title">
-    <div class="section-heading">
-      <div><div class="eyebrow">Module 03 / Privacy-first reporting</div><h2 id="receipt-title">Trust Receipt</h2><p>Create a shareable summary without including the original message or full URL.</p></div>
-    </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">▤</div><div><h3>Your privacy-safe receipt</h3><p>Uses the latest available check summaries.</p></div></div>
-        <p class="muted">The receipt contains a generated ID, time, risk labels, and counts of matched indicators. It does not include your original message, URL, or exact domain.</p>
-        <div class="button-row">
-          <button class="primary" id="makeReceipt">Generate receipt</button>
-          <button class="secondary" id="copyReceipt" disabled>Copy receipt</button>
-          <button class="secondary" id="downloadReceipt" disabled>Download .txt</button>
-        </div>
-        <div id="receiptResult" class="result" role="status" aria-live="polite"></div>
-      </div>
-      <div class="panel">
-        <h3>What gets shared?</h3>
-        <ul class="checklist">
-          <li><span aria-hidden="true">✓</span><span>Risk category and matched-signal count</span></li>
-          <li><span aria-hidden="true">✓</span><span>Random receipt reference and timestamp</span></li>
-          <li><span aria-hidden="true">×</span><span>Original message and full URL are excluded</span></li>
-          <li><span aria-hidden="true">×</span><span>No automatic upload or submission to authorities</span></li>
-        </ul>
-        <div class="tip">A receipt is an educational summary, not proof of fraud and not an official cybercrime report.</div>
-      </div>
-    </div>
-  </section>
+ <section class="section" id="arena">
+  <div class="section-head"><div><div class="eyebrow">03 / Learn by doing</div><h2>Cyber Arena</h2><p>Practice recognising common online scams.</p></div><span class="pill">INTERACTIVE QUIZ</span></div>
+  <div class="grid">
+   <article class="card wide">
+    <div class="icon">⚡</div>
+    <div class="row" style="justify-content:space-between"><h2 id="quizTitle">Challenge 1</h2><span class="pill" id="quizProgress">Question 1 of 5</span></div>
+    <p id="quizQuestion">Your bank supposedly asks you to share an OTP over chat. What should you do?</p>
+    <div id="quizOptions"></div>
+    <div id="quizFeedback" class="result hidden" aria-live="polite"></div>
+    <div class="row"><button class="btn primary" id="nextQuestion" disabled>Next question →</button><button class="btn" id="restartQuiz">Restart quiz</button></div>
+   </article>
+   <article class="card">
+    <div class="icon">✦</div><h2>Your score</h2>
+    <p>Earn points by choosing the safest action.</p>
+    <strong id="quizScore" style="font-size:43px;color:var(--teal)">0</strong><span class="muted"> points</span>
+    <div class="bar" style="margin-top:12px"><span id="quizBar" style="width:0%"></span></div>
+    <p id="quizSummary" aria-live="polite">Complete the challenge to see your result.</p>
+   </article>
+  </div>
+ </section>
 
-  <section class="section" id="family-shield" aria-labelledby="family-title">
-    <div class="section-heading">
-      <div><div class="eyebrow">Module 04 / Family Shield</div><h2 id="family-title">Simple, safer digital habits</h2><p>A plain-language safety mode for family members and first-time internet users.</p></div>
-    </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">♡</div><div><h3>Family Shield mode</h3><p>Turn on a simplified safety checklist.</p></div></div>
-        <button class="primary" id="familyToggle" aria-pressed="false">Enable Family Shield</button>
-        <div id="familyContent" class="hidden">
-          <hr>
-          <h3>Before you respond, pause and check:</h3>
-          <ul class="checklist">
-            <li><input type="checkbox" id="fam1"><label for="fam1">I will never share an OTP, PIN, password, or screen-sharing code.</label></li>
-            <li><input type="checkbox" id="fam2"><label for="fam2">I will call the person or organization using a number I already trust.</label></li>
-            <li><input type="checkbox" id="fam3"><label for="fam3">I will not pay a fee to receive a prize or unlock a surprise reward.</label></li>
-            <li><input type="checkbox" id="fam4"><label for="fam4">I will ask a trusted person if a message makes me feel rushed or afraid.</label></li>
-            <li><input type="checkbox" id="fam5"><label for="fam5">I will avoid installing apps or sharing my screen at a stranger's request.</label></li>
-          </ul>
-          <div class="mini-stat"><span>Safety steps completed</span><strong id="familyProgress">0 / 5</strong></div>
-          <div class="meter"><span id="familyMeter"></span></div>
-          <div class="tip">Banks and legitimate support staff should not ask you to reveal an OTP or PIN over a call or message.</div>
-        </div>
-      </div>
-      <div class="panel">
-        <h3>If you think you have been scammed</h3>
-        <ol>
-          <li>Stop replying and do not send more money.</li>
-          <li>Contact your bank or payment provider through its official channel if money or banking details are involved.</li>
-          <li>Save relevant evidence, such as transaction references and screenshots, while protecting sensitive information.</li>
-          <li>In India, report suspected cybercrime using the official portal or helpline below.</li>
-        </ol>
-        <p><a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">Official Indian Cyber Crime Reporting Portal ↗</a></p>
-        <p><a href="https://www.rbi.org.in/" target="_blank" rel="noopener noreferrer">Reserve Bank of India ↗</a></p>
-        <p class="muted">India's cybercrime helpline is 1930 for reporting financial cyber fraud. Use official channels and act promptly.</p>
-      </div>
-    </div>
-  </section>
+ <section class="section" id="family">
+  <div class="section-head"><div><div class="eyebrow">04 / Shared safety</div><h2>Family Shield</h2><p>A simple, device-local family cyber-safety plan.</p></div></div>
+  <div class="grid">
+   <article class="card">
+    <div class="icon">⌂</div><h2>Safety checklist</h2>
+    <p>Tick off good practices on this device.</p>
+    <label class="checkline"><input type="checkbox" class="familyCheck"> Use unique passwords and a password manager.</label>
+    <label class="checkline"><input type="checkbox" class="familyCheck"> Enable two-factor authentication where possible.</label>
+    <label class="checkline"><input type="checkbox" class="familyCheck"> Keep phones and apps updated.</label>
+    <label class="checkline"><input type="checkbox" class="familyCheck"> Agree to verify urgent payment requests by phone.</label>
+    <label class="checkline"><input type="checkbox" class="familyCheck"> Know how to block and report suspicious contacts.</label>
+    <div class="result"><strong id="familyProgress">0 of 5 completed</strong><div class="bar" style="margin-top:10px"><span id="familyBar" style="width:0%"></span></div></div>
+   </article>
+   <article class="card wide">
+    <div class="icon">♧</div><h2>When something seems wrong</h2>
+    <ul class="clean">
+     <li>Pause. Do not click, forward, pay, or share a verification code.</li>
+     <li>Contact the organisation through its independently verified official channel.</li>
+     <li>Save relevant evidence without spreading suspicious links.</li>
+     <li>In India, report suspected cybercrime at <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">cybercrime.gov.in</a>.</li>
+     <li>If money has been lost to cyber fraud in India, contact your bank and call 1930 promptly.</li>
+    </ul>
+    <div class="notice">This checklist does not remotely monitor devices, block messages, or notify family members. Progress is kept only in the current page session.</div>
+   </article>
+  </div>
+ </section>
 
-  <section class="section" id="cyber-arena" aria-labelledby="arena-title">
-    <div class="section-heading">
-      <div><div class="eyebrow">Module 05 / Learn by playing</div><h2 id="arena-title">Cyber Arena</h2><p>Test your scam-spotting instincts. Learn why each answer is safer.</p></div>
-    </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-top"><div class="panel-icon" aria-hidden="true">⚡</div><div><h3>Scam awareness challenge</h3><p>Choose the best response to each situation.</p></div></div>
-        <div class="mini-stat"><span id="quizProgress">Question 1 of 5</span><strong id="quizScore">Score: 0</strong></div>
-        <div class="meter"><span id="quizMeter" style="width:20%"></span></div>
-        <div id="quizQuestion" class="quiz-question"></div>
-        <div id="quizAnswers" class="answers"></div>
-        <div id="quizFeedback" class="result" role="status" aria-live="polite"></div>
-        <div class="quiz-footer">
-          <small id="quizHint">Pick one answer.</small>
-          <button class="primary" id="quizNext" disabled>Next question →</button>
-        </div>
-      </div>
-      <div class="panel">
-        <h3>Your learning score</h3>
-        <div class="score-wrap"><div class="score" id="scoreCircle">0%</div><div><strong id="scoreLabel">Challenge ready</strong><p class="muted" id="scoreText">Complete all five questions to see your result.</p></div></div>
-        <div class="tip">This score measures your answers in this mini-quiz only. It is not a cybersecurity certification.</div>
-        <hr>
-        <h3>Remember the S.A.F.E. rule</h3>
-        <ul class="checklist">
-          <li><span>🛑</span><span><strong>Stop</strong> when someone creates urgency or fear.</span></li>
-          <li><span>🔎</span><span><strong>Assess</strong> the sender, domain, and request independently.</span></li>
-          <li><span>📞</span><span><strong>Find</strong> an official contact channel yourself.</span></li>
-          <li><span>🔐</span><span><strong>Exclude</strong> passwords, PINs, and OTPs from any conversation.</span></li>
-        </ul>
-        <button class="secondary" id="restartQuiz">Restart challenge</button>
-      </div>
-    </div>
-  </section>
+ <section class="section" id="receipt">
+  <div class="section-head"><div><div class="eyebrow">05 / Privacy by design</div><h2>Trust Receipt</h2><p>Create a small summary of a scan without including the original message.</p></div></div>
+  <div class="grid">
+   <article class="card wide">
+    <div class="icon">▤</div><h2>Latest scan receipt</h2>
+    <p>The receipt includes the scan type, local warning count, and time. It excludes the text and URL you submitted.</p>
+    <div class="result"><div id="receiptText" class="receipt" aria-live="polite">No scan completed yet. Run a message or URL check to create a receipt.</div></div>
+    <div class="row"><button class="btn primary" id="copyReceipt" disabled>Copy receipt</button><button class="btn" id="downloadReceipt" disabled>Download .txt</button></div>
+    <p class="muted">A receipt records what this local heuristic check reported. It is not proof of authenticity or a certified security audit.</p>
+   </article>
+   <article class="card">
+    <div class="icon">◈</div><h2>Privacy promise</h2>
+    <ul class="clean">
+     <li>Analysis runs in your browser.</li>
+     <li>No message history is stored by this page.</li>
+     <li>No external scanning API is called.</li>
+     <li>Demo numbers are illustrative, not live global statistics.</li>
+    </ul>
+    <div class="notice">Your browser, extensions, hosting provider, or device may have their own data practices. Do not submit secrets to any online tool.</div>
+   </article>
+  </div>
+ </section>
 
-  <section class="section" aria-labelledby="limits-title">
-    <div class="panel">
-      <div class="eyebrow">Transparency center</div>
-      <h2 id="limits-title">What this prototype can — and cannot — do</h2>
-      <div class="grid">
-        <div>
-          <h3 style="color:var(--green)">What it can do</h3>
-          <ul>
-            <li>Match visible message phrases against simple warning rules.</li>
-            <li>Inspect basic URL structure and selected suspicious patterns.</li>
-            <li>Explain why a warning was raised.</li>
-            <li>Generate a privacy-conscious text receipt locally.</li>
-            <li>Teach safer choices through the Family Shield and quiz.</li>
-          </ul>
-        </div>
-        <div>
-          <h3 style="color:var(--yellow)">What it cannot do</h3>
-          <ul>
-            <li>Guarantee that any message or URL is safe or fraudulent.</li>
-            <li>Check live domain reputation, databases, or threat intelligence.</li>
-            <li>Confirm a sender's identity or verify bank transactions.</li>
-            <li>Detect deepfakes, inspect media, or run a trained AI model.</li>
-            <li>Replace professional advice or an official cybercrime report.</li>
-          </ul>
-        </div>
-      </div>
-      <p class="muted">Risk scores are heuristic estimates created by this prototype. A low score is not a safety certificate. Scammers change tactics, and legitimate messages can contain warning words.</p>
-    </div>
-  </section>
+ <section class="section" id="analytics">
+  <div class="section-head"><div><div class="eyebrow">06 / Insights</div><h2>Premium Analytics</h2><p>Distinguish illustrative product previews from your actual session.</p></div><span class="pill">NO TRACKING</span></div>
+  <div class="grid">
+   <article class="card wide">
+    <h2>Illustrative scan activity</h2>
+    <p>This chart is generated from fixed example data. It does not represent real users or live attacks.</p>
+    <canvas id="demoChart" role="img" aria-label="Illustrative example scan activity over seven days"></canvas>
+    <div class="tags"><span class="tag">Demo data</span><span class="tag">Not live threat intelligence</span></div>
+   </article>
+   <article class="card">
+    <h2>Your session</h2><p>Activity since this page was opened.</p>
+    <div class="stat"><strong id="actualScans">0</strong><span>Completed scans</span></div>
+    <div class="stat" style="margin-top:10px"><strong id="actualWarnings">0</strong><span>Heuristic warnings</span></div>
+    <button class="btn" id="resetSession" style="margin-top:12px">Reset session stats</button>
+    <p class="muted">Session counters are held in memory and reset when you reload or leave this page.</p>
+   </article>
+  </div>
+ </section>
 
-  <footer>
-    <div class="brand"><div class="logo" aria-hidden="true">A</div><div><strong>AI AVENGERS · SCAMSHIELD SENTINEL</strong><small>Project Seva · Cyber awareness prototype</small></div></div>
-    <p>Built as a single-file, client-side educational demo. No external JavaScript libraries, tracking scripts, accounts, or server-side analysis are used by this page.</p>
-    <p>Use official channels to verify suspicious activity. This project is for awareness and demonstration, not a substitute for professional security tools.</p>
-  </footer>
+ <section class="section" id="limits">
+  <article class="card full">
+   <div class="eyebrow">Important limitations</div>
+   <h2>Helpful signals, not a guarantee</h2>
+   <p>This prototype uses simple, transparent pattern matching. It is not a trained AI model, antivirus, browser firewall, real-time URL reputation service, or forensic deepfake detector. It can miss scams and flag legitimate messages. Never rely on a green result alone when making financial or safety decisions.</p>
+  </article>
+ </section>
 </main>
+
+<footer><div class="wrap"><span>⌁ AI AVENGERS · SCAMSHIELD SENTINEL</span><span>Aurora Intelligence · Built for safer digital habits</span></div></footer>
+<div id="toast" class="hidden" role="status" aria-live="polite"></div>
 
 <script>
 "use strict";
 
-const $ = (id) => document.getElementById(id);
+const $ = id => document.getElementById(id);
+let sessionScans = 0;
+let sessionWarnings = 0;
+let lastReceipt = "";
+let toastTimer;
 
-let latestMessage = null;
-let latestUrl = null;
-let receiptText = "";
-let quizIndex = 0;
-let quizScore = 0;
-let quizAnswered = false;
-
-const messageRules = [
-  {
-    name: "Urgency or threat",
-    pattern: /\b(urgent|immediately|act now|final warning|within \d+\s*(minutes?|hours?)|account (will be|is) (blocked|suspended|closed)|will be blocked|last chance|expire[sd]?)\b/i,
-    weight: 2,
-    explanation: "The message pressures you to act quickly or threatens a consequence. Pause and verify independently."
-  },
-  {
-    name: "OTP, PIN, or password request",
-    pattern: /\b(share|send|tell|provide|enter|confirm|verify|submit)\b.{0,65}\b(otp|one[- ]time password|pin|password|passcode|cvv)\b|\b(otp|one[- ]time password|pin|password|passcode|cvv)\b.{0,50}\b(share|send|tell|provide|enter|confirm|verify|submit)\b/i,
-    weight: 4,
-    explanation: "The text appears to request a sensitive authentication detail. Never share OTPs, PINs, passwords, or CVVs with another person."
-  },
-  {
-    name: "Suspicious link or link prompt",
-    pattern: /\b(click|tap|open|visit|login|log in|verify|update)\b.{0,55}\b(link|url|website|account|details|kyc)\b|\bhttps?:\/\/\S+/i,
-    weight: 2,
-    explanation: "A link or an instruction to visit a page appears in the message. Check the destination independently instead of trusting the message."
-  },
-  {
-    name: "Money or payment pressure",
-    pattern: /\b(pay now|send money|transfer (money|funds)|processing fee|release fee|pay a fee|deposit now|refund fee|bank details|upi pin|collect request)\b/i,
-    weight: 3,
-    explanation: "The message mentions a payment or sensitive financial action. Confirm the request through an official channel."
-  },
-  {
-    name: "Prize or unexpected reward",
-    pattern: /\b(you (have )?won|winner|lottery|prize money|free gift|claim your prize|guaranteed returns|double your money|cash reward)\b/i,
-    weight: 2,
-    explanation: "Unexpected prizes or guaranteed returns can be used as bait, especially when a fee or sensitive detail is requested."
-  },
-  {
-    name: "Impersonation or authority claim",
-    pattern: /\b(police|customs|court|income tax|government|bank officer|rbi|arrest warrant|digital arrest)\b/i,
-    weight: 2,
-    explanation: "The message invokes an authority or institution. The wording alone does not prove fraud; verify through contact details you find yourself."
-  },
-  {
-    name: "Remote access or app installation",
-    pattern: /\b(screen share|remote access|install this app|download apk|anydesk|teamviewer|allow access|share your screen)\b/i,
-    weight: 4,
-    explanation: "The message mentions remote access, screen sharing, or installing an app. Do not grant control of your device to an unsolicited contact."
-  },
-  {
-    name: "Personal information request",
-    pattern: /\b(aadhaar|aadhar|pan number|card number|date of birth|bank account number|identity document|identity proof)\b/i,
-    weight: 2,
-    explanation: "The message mentions personal or financial information. Only share it when necessary with a verified organization through a trusted channel."
-  }
-];
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  })[char]);
+function toast(message) {
+  $("toast").textContent = message;
+  $("toast").classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $("toast").classList.add("hidden"), 2600);
 }
-
-function riskBand(score) {
-  if (score >= 7) return { label: "HIGH WARNING", type: "danger", description: "Several warning signals matched. Do not act on the request until you verify it independently." };
-  if (score >= 4) return { label: "CAUTION", type: "caution", description: "Potential warning signs were found. Verify the sender and request using a trusted channel." };
-  if (score >= 1) return { label: "LOW SIGNAL COUNT", type: "safe", description: "A small number of warning signals matched. This does not establish whether the message is legitimate." };
-  return { label: "NO RULES MATCHED", type: "neutral", description: "These rules did not find common warning patterns. This does not mean the message is safe." };
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
 }
-
-function setMeter(id, score) {
-  $(id).style.width = Math.max(0, Math.min(100, score * 10)) + "%";
+function addSession(warnings) {
+  sessionScans++;
+  sessionWarnings += warnings;
+  $("sessionScans").textContent = sessionScans;
+  $("actualScans").textContent = sessionScans;
+  $("actualWarnings").textContent = sessionWarnings;
 }
-
-function renderIndicators(container, matches) {
-  const el = $(container);
-  el.replaceChildren();
-  if (!matches.length) {
-    const p = document.createElement("p");
-    p.className = "muted";
-    p.textContent = "No configured warning rules matched. Unknown or new scam patterns may not be detected.";
-    el.appendChild(p);
-    return;
-  }
-  const heading = document.createElement("h3");
-  heading.textContent = "Matched warning signals";
-  el.appendChild(heading);
-  const list = document.createElement("ul");
-  list.className = "indicator-list";
-  matches.forEach((match) => {
-    const li = document.createElement("li");
-    const symbol = document.createElement("div");
-    symbol.textContent = "⚑";
-    symbol.style.color = "var(--yellow)";
-    const content = document.createElement("div");
-    const strong = document.createElement("strong");
-    strong.textContent = match.name;
-    const span = document.createElement("span");
-    span.textContent = match.explanation;
-    content.append(strong, span);
-    li.append(symbol, content);
-    list.appendChild(li);
-  });
-  el.appendChild(list);
-}
-
-function analyzeMessage() {
-  const text = $("messageInput").value.trim();
-  if (!text) {
-    $("messageResult").className = "result caution";
-    $("messageResult").textContent = "Enter a message first, or load the sample scenario.";
-    $("dnaDetails").replaceChildren();
-    return;
-  }
-  const matches = messageRules.filter((rule) => rule.pattern.test(text));
-  const rawScore = matches.reduce((sum, item) => sum + item.weight, 0);
-  const score = Math.min(10, rawScore);
-  const band = riskBand(score);
-  latestMessage = { score, band, count: matches.length };
-  const result = $("messageResult");
-  result.className = "result " + band.type;
-  result.replaceChildren();
-
-  const pill = document.createElement("span");
-  pill.className = "pill " + band.type;
-  pill.textContent = band.label;
-  const title = document.createElement("h3");
-  title.textContent = "Heuristic score: " + score + " / 10";
-  const desc = document.createElement("p");
-  desc.textContent = band.description;
-  const note = document.createElement("small");
-  note.textContent = "This score reflects matched rules, not a probability of fraud.";
-  result.append(pill, title, desc, note);
-  renderIndicators("dnaDetails", matches);
-
-  $("messageMini").textContent = band.label;
-  setMeter("messageMeter", score);
-}
-
-function normalizeUrlInput(input) {
-  let candidate = input.trim();
-  if (!candidate) throw new Error("Enter a website address first.");
-  if (/\s/.test(candidate)) throw new Error("The address contains spaces. Check the URL and try again.");
-  if (candidate.startsWith("//")) candidate = "https:" + candidate;
-  else if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(candidate)) candidate = "https://" + candidate;
-
-  let parsed;
-  try { parsed = new URL(candidate); }
-  catch (_) { throw new Error("This address could not be parsed. Check its spelling and format."); }
-
-  if (!["http:", "https:"].includes(parsed.protocol)) {
-    throw new Error("Only HTTP and HTTPS website addresses can be checked.");
-  }
-  if (!parsed.hostname || parsed.hostname.includes("..")) {
-    throw new Error("The URL has an invalid hostname.");
-  }
-  return parsed;
-}
-
-function analyzeUrl() {
-  const raw = $("urlInput").value.trim();
-  const result = $("urlResult");
-  const details = $("urlDetails");
-  details.replaceChildren();
-
-  let parsed;
-  try { parsed = normalizeUrlInput(raw); }
-  catch (error) {
-    latestUrl = null;
-    result.className = "result caution";
-    result.textContent = error.message;
-    $("urlMini").textContent = "INVALID INPUT";
-    setMeter("urlMeter", 0);
-    return;
-  }
-
-  const host = parsed.hostname.toLowerCase();
-  const full = parsed.href;
-  const matches = [];
-  let score = 0;
-
-  function add(name, weight, explanation) {
-    matches.push({ name, weight, explanation });
-    score += weight;
-  }
-
-  if (parsed.protocol !== "https:") {
-    add("No HTTPS encryption", 2, "This URL uses HTTP. Data may not be encrypted in transit. HTTPS alone would not prove a site is trustworthy.");
-  }
-  if (parsed.username || parsed.password) {
-    add("Credentials embedded in URL", 4, "The URL includes a username or password field. This is unusual and can make a link deceptive.");
-  }
-  if (host.startsWith("xn--") || host.includes(".xn--")) {
-    add("Internationalized/punycode domain", 2, "The domain uses punycode encoding. Some lookalike domains use similar characters, so verify the exact domain.");
-  }
-  if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(host)) {
-    add("IP-address hostname", 2, "The website uses an IP address instead of a familiar domain. This is not automatically malicious, but warrants caution.");
-  }
-  if (host.split(".").length >= 5) {
-    add("Unusually deep subdomain", 1, "The hostname contains many subdomain levels. Read the registered domain carefully.");
-  }
-  if (host.length > 45) {
-    add("Long hostname", 1, "The hostname is unusually long. Long names can hide the important part of a destination.");
-  }
-  if (/(login|verify|secure|account|update|wallet|gift|claim|bank|kyc|prize|bonus)/i.test(host)) {
-    add("Sensitive or reward-related wording", 1, "The hostname contains words often used in account or reward lures. Legitimate sites may also use these words.");
-  }
-  if (/[^\x00-\x7F]/.test(host)) {
-    add("Non-ASCII hostname characters", 2, "The hostname includes non-ASCII characters. Check carefully for lookalike letters and confirm the official domain.");
-  }
-  if (parsed.href.length > 180) {
-    add("Very long URL", 1, "The full URL is long. Long links can obscure where they lead, though length alone does not prove danger.");
-  }
-  if (parsed.search.length > 0 && /(password|passwd|token|otp|session|secret)=/i.test(parsed.search)) {
-    add("Sensitive-looking query parameter", 3, "The URL appears to include a sensitive value in its query string. Avoid sharing or opening it; remove private tokens from copied links.");
-  }
-  if (host.split(".").some((part) => part.length >= 25)) {
-    add("Long domain component", 1, "One domain component is unusually long. Inspect the exact hostname before trusting it.");
-  }
-
-  score = Math.min(10, score);
-  const band = riskBand(score);
-  latestUrl = { score, band, count: matches.length };
-  result.className = "result " + band.type;
-  result.replaceChildren();
-
-  const pill = document.createElement("span");
-  pill.className = "pill " + band.type;
-  pill.textContent = band.label;
-  const title = document.createElement("h3");
-  title.textContent = "Heuristic score: " + score + " / 10";
-  const desc = document.createElement("p");
-  desc.textContent = band.description;
-  const hostLine = document.createElement("p");
-  const hostStrong = document.createElement("strong");
-  hostStrong.textContent = "Hostname: ";
-  const hostText = document.createElement("span");
-  hostText.textContent = host;
-  hostLine.append(hostStrong, hostText);
-  const note = document.createElement("small");
-  note.textContent = "No website was opened and no reputation lookup was performed.";
-  result.append(pill, title, desc, hostLine, note);
-
-  renderIndicators("urlDetails", matches);
-  $("urlMini").textContent = band.label;
-  setMeter("urlMeter", score);
-
-  // Keep the exact URL in the input only. It is deliberately not copied into a Trust Receipt.
-  void full;
-}
-
-function setDemoMessage() {
-  $("messageInput").value = "URGENT: Your bank account will be blocked today. Verify your account immediately using this link and share the OTP to prevent suspension: http://secure-bank.example.invalid/verify";
-  updateMessageCount();
-  analyzeMessage();
-}
-function setDemoUrl() {
-  $("urlInput").value = "http://account-verify.example.invalid/login?next=claim-prize";
-  analyzeUrl();
-}
-function updateMessageCount() {
-  $("messageCount").textContent = $("messageInput").value.length + " / 10000 characters";
-}
-
-function randomReceiptId() {
-  const bytes = new Uint8Array(5);
-  if (window.crypto && window.crypto.getRandomValues) {
-    window.crypto.getRandomValues(bytes);
-    return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
-  }
-  return Math.random().toString(16).slice(2, 12).toUpperCase();
-}
-
-function makeReceipt() {
-  if (!latestMessage && !latestUrl) {
-    $("receiptResult").className = "result caution";
-    $("receiptResult").textContent = "Analyze a message or URL first to generate a receipt.";
-    return;
-  }
-  const lines = [
-    "AI AVENGERS — SCAMSHIELD SENTINEL",
-    "PRIVACY-PRESERVING TRUST RECEIPT",
-    "Reference: SS-" + randomReceiptId(),
-    "Generated: " + new Date().toISOString(),
-    "",
-    "Message analysis: " + (latestMessage ? latestMessage.band.label : "NOT CHECKED"),
-    "Message heuristic score: " + (latestMessage ? latestMessage.score + "/10" : "N/A"),
-    "Message matched-signal count: " + (latestMessage ? latestMessage.count : "N/A"),
-    "",
-    "URL analysis: " + (latestUrl ? latestUrl.band.label : "NOT CHECKED"),
-    "URL heuristic score: " + (latestUrl ? latestUrl.score + "/10" : "N/A"),
-    "URL matched-signal count: " + (latestUrl ? latestUrl.count : "N/A"),
-    "",
-    "Privacy: Original message and full URL intentionally excluded.",
-    "Limitations: Local rules only. No live reputation check or AI model.",
-    "This educational receipt is not proof of fraud or an official report."
-  ];
-  receiptText = lines.join("\n");
-  const out = $("receiptResult");
-  out.className = "result neutral";
-  out.replaceChildren();
-  const pre = document.createElement("pre");
-  pre.style.whiteSpace = "pre-wrap";
-  pre.style.overflowWrap = "anywhere";
-  pre.style.font = "12px/1.7 ui-monospace, SFMono-Regular, Consolas, monospace";
-  pre.textContent = receiptText;
-  out.appendChild(pre);
+function createReceipt(type, warnings, level) {
+  const time = new Date().toISOString();
+  lastReceipt =
+`AI AVENGERS · SCAMSHIELD SENTINEL
+Trust Receipt — local heuristic check
+Timestamp (UTC): ${time}
+Check type: ${type}
+Reported level: ${level}
+Warning signals: ${warnings}
+Original content: NOT INCLUDED
+Network reputation lookup: NOT PERFORMED
+Result: Advisory only; not proof of safety.`;
+  $("receiptText").textContent = lastReceipt;
   $("copyReceipt").disabled = false;
   $("downloadReceipt").disabled = false;
 }
-
-async function copyReceipt() {
-  if (!receiptText) return;
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(receiptText);
-    } else {
-      const temp = document.createElement("textarea");
-      temp.value = receiptText;
-      temp.setAttribute("readonly", "");
-      temp.style.position = "fixed";
-      temp.style.opacity = "0";
-      document.body.appendChild(temp);
-      temp.select();
-      const copied = document.execCommand("copy");
-      temp.remove();
-      if (!copied) throw new Error("Copy not available");
-    }
-    $("receiptResult").setAttribute("aria-label", "Trust receipt generated and copied");
-  } catch (_) {
-    $("receiptResult").className = "result caution";
-    const message = document.createElement("p");
-    message.textContent = "Automatic copying is not available here. Select and copy the receipt text manually.";
-    $("receiptResult").appendChild(message);
-  }
+function renderResult(target, title, level, reasons, tips, warnings) {
+  const cls = level === "High risk signals" ? "danger" :
+              level === "Caution advised" ? "warn" : "safe";
+  $(target).innerHTML = `
+    <div class="status ${cls}">${escapeHTML(level)}</div>
+    <h3>${escapeHTML(title)}</h3>
+    <p>Signals are indicators, not a verdict.</p>
+    <strong>Why this result?</strong>
+    <ul class="clean">${reasons.length
+      ? reasons.map(x => `<li>${escapeHTML(x)}</li>`).join("")
+      : "<li>No patterns from this small rule set were detected.</li>"}</ul>
+    <strong>Recommended next steps</strong>
+    <ul class="clean">${tips.map(x => `<li>${escapeHTML(x)}</li>`).join("")}</ul>
+    <div class="tags"><span class="tag">${warnings} warning signal(s)</span><span class="tag">Local analysis</span></div>`;
+  $(target).classList.remove("hidden");
 }
-
-function downloadReceipt() {
-  if (!receiptText) return;
-  const blob = new Blob([receiptText], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "scamshield-trust-receipt.txt";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-}
-
-function setFamilyMode(enabled) {
-  $("familyContent").classList.toggle("hidden", !enabled);
-  $("familyToggle").setAttribute("aria-pressed", String(enabled));
-  $("familyToggle").textContent = enabled ? "Disable Family Shield" : "Enable Family Shield";
-}
-function updateFamilyProgress() {
-  const boxes = ["fam1", "fam2", "fam3", "fam4", "fam5"];
-  const checked = boxes.filter((id) => $(id).checked).length;
-  $("familyProgress").textContent = checked + " / " + boxes.length;
-  $("familyMeter").style.width = (checked / boxes.length * 100) + "%";
-}
-
-const quiz = [
-  {
-    q: "A caller says your bank account will be frozen unless you read out an OTP. What should you do?",
-    a: ["Read it out to avoid losing access.", "End the call and contact the bank through an official number.", "Send it by message instead."],
-    correct: 1,
-    why: "Never disclose an OTP. End the unsolicited interaction and independently contact your bank."
-  },
-  {
-    q: "You receive a prize message asking for a small processing fee. What is the safest response?",
-    a: ["Pay quickly before the offer expires.", "Share your ID to prove you are the winner.", "Do not pay; verify the offer independently."],
-    correct: 2,
-    why: "Unexpected rewards tied to fees are a common warning sign. Verify independently and do not pay to unlock a prize."
-  },
-  {
-    q: "A link shows a familiar brand name, but the actual domain looks different. What should you do?",
-    a: ["Open it because the logo looks real.", "Visit the official website by typing its known address yourself.", "Trust it if it has HTTPS."],
-    correct: 1,
-    why: "Logos can be copied and HTTPS only encrypts the connection. Use a trusted route to reach the official site."
-  },
-  {
-    q: "Someone claiming to be support asks you to install a remote-access app and share your screen. What is safest?",
-    a: ["Decline and verify the support request independently.", "Install it because support asked.", "Show your banking app to prove your issue."],
-    correct: 0,
-    why: "Unsolicited remote access can expose accounts and private information. Contact support through its official channel."
-  },
-  {
-    q: "A message has no obvious scam phrases. Does that prove it is safe?",
-    a: ["Yes, if the grammar is good.", "Yes, if there is no link.", "No. Verify the sender and request independently."],
-    correct: 2,
-    why: "Scams can look professional and contain no obvious trigger words. Rule-based checks can miss new or subtle scams."
-  }
+const urgencyPatterns = [
+  {re:/\b(act now|immediately|urgent|final warning|within \d+ hours?|expires today|account.{0,25}(blocked|suspended|closed))\b/i,
+   reason:"Urgent pressure or account-threat language."},
+  {re:/\b(otp|one.time password|verification code|pin)\b/i,
+   reason:"Mentions a code or PIN. Never share authentication codes with another person."},
+  {re:/\b(send|pay|transfer|deposit)\b.{0,35}\b(money|cash|rupees|rs\.?|upi|gift card|crypto|cryptocurrency)\b/i,
+   reason:"Payment or money-transfer language that needs independent verification."},
+  {re:/\b(prize|winner|won|lottery|giveaway|free reward|claim your reward)\b/i,
+   reason:"Prize or reward claim that could be used as bait."},
+  {re:/\b(password|bank details|card number|cvv|login credentials)\b/i,
+   reason:"Requests or references sensitive account information."},
+  {re:/\b(verify|confirm|update).{0,40}\b(account|bank|kyc|wallet|identity)\b/i,
+   reason:"Account-verification language that could be used to solicit information."},
+  {re:/\b(remote access|install this app|screen sharing|anydesk|teamviewer)\b/i,
+   reason:"Remote-access or app-install language; verify the request independently."},
+  {re:/\b(guaranteed profit|double your money|risk.free return)\b/i,
+   reason:"Unrealistic financial-return language."}
 ];
 
-function renderQuiz() {
-  const q = quiz[quizIndex];
-  quizAnswered = false;
-  $("quizProgress").textContent = "Question " + (quizIndex + 1) + " of " + quiz.length;
-  $("quizScore").textContent = "Score: " + quizScore;
-  $("quizMeter").style.width = ((quizIndex + 1) / quiz.length * 100) + "%";
-  $("quizQuestion").textContent = q.q;
-  $("quizAnswers").replaceChildren();
-  $("quizFeedback").className = "result";
-  $("quizFeedback").textContent = "";
-  $("quizHint").textContent = "Pick one answer.";
-  $("quizNext").disabled = true;
-  $("quizNext").textContent = quizIndex === quiz.length - 1 ? "See results →" : "Next question →";
-
-  q.a.forEach((answer, index) => {
-    const button = document.createElement("button");
-    button.className = "answer";
-    button.textContent = String.fromCharCode(65 + index) + ". " + answer;
-    button.addEventListener("click", () => chooseAnswer(index));
-    $("quizAnswers").appendChild(button);
-  });
-}
-function chooseAnswer(index) {
-  if (quizAnswered) return;
-  quizAnswered = true;
-  const q = quiz[quizIndex];
-  const buttons = Array.from($("quizAnswers").querySelectorAll("button"));
-  buttons.forEach((button, i) => {
-    button.disabled = true;
-    if (i === q.correct) button.classList.add("correct");
-    else if (i === index) button.classList.add("wrong");
-  });
-  const isCorrect = index === q.correct;
-  if (isCorrect) quizScore++;
-  $("quizScore").textContent = "Score: " + quizScore;
-  $("quizFeedback").className = "result " + (isCorrect ? "safe" : "caution");
-  const title = document.createElement("h3");
-  title.textContent = isCorrect ? "Correct — good judgement!" : "Not quite — here's the safer choice.";
-  const explanation = document.createElement("p");
-  explanation.textContent = q.why;
-  $("quizFeedback").replaceChildren(title, explanation);
-  $("quizHint").textContent = isCorrect ? "One point earned." : "No point this time.";
-  $("quizNext").disabled = false;
-  if (quizIndex === quiz.length - 1) {
-    const percent = Math.round(quizScore / quiz.length * 100);
-    $("scoreCircle").textContent = percent + "%";
-    $("scoreLabel").textContent = "Final score: " + quizScore + " / " + quiz.length;
-    $("scoreText").textContent = percent >= 80 ? "Strong scam-awareness instincts. Keep verifying independently." : "Good practice. Review the explanations and try again.";
+function inspectMessage(text) {
+  const reasons = [];
+  for (const rule of urgencyPatterns) {
+    if (rule.re.test(text)) reasons.push(rule.reason);
   }
+  const links = text.match(/(?:https?:\/\/|www\.)[^\s<>"']+/gi) || [];
+  if (links.length) reasons.push("Contains one or more visible web links. Inspect the destination before opening.");
+  if (/\b(bit\.ly|tinyurl\.com|t\.co|cutt\.ly|shorturl\.at)\b/i.test(text))
+    reasons.push("Mentions a commonly used link-shortening service, which hides the final destination.");
+  const unique = [...new Set(reasons)];
+  return {
+    warnings: unique.length,
+    level: unique.length >= 3 ? "High risk signals" :
+           unique.length >= 1 ? "Caution advised" : "No listed warning patterns",
+    reasons: unique
+  };
 }
-function nextQuestion() {
-  if (!quizAnswered) return;
-  if (quizIndex < quiz.length - 1) {
-    quizIndex++;
-    renderQuiz();
-  } else {
-    $("quizQuestion").textContent = "Challenge complete!";
-    $("quizAnswers").replaceChildren();
-    $("quizFeedback").className = "result safe";
-    $("quizFeedback").textContent = "You scored " + quizScore + " out of " + quiz.length + ". Restart the challenge to practise again.";
-    $("quizNext").disabled = true;
-    $("quizHint").textContent = "All questions answered.";
-  }
-}
-function restartQuiz() {
-  quizIndex = 0;
-  quizScore = 0;
-  $("scoreCircle").textContent = "0%";
-  $("scoreLabel").textContent = "Challenge ready";
-  $("scoreText").textContent = "Complete all five questions to see your result.";
-  renderQuiz();
-}
-
-$("startScan").addEventListener("click", () => {
-  $("message-check").scrollIntoView({ behavior: "smooth" });
-  $("messageInput").focus({ preventScroll: true });
+$("scanMessage").addEventListener("click", () => {
+  const text = $("messageInput").value.trim();
+  if (!text) { toast("Enter a message to inspect first."); $("messageInput").focus(); return; }
+  const result = inspectMessage(text);
+  const tips = [
+    "Do not click links or reply while uncertain.",
+    "Verify claims using a contact method you find independently.",
+    "Never disclose OTPs, passwords, or recovery codes."
+  ];
+  renderResult("messageResult", "Message analysis", result.level, result.reasons, tips, result.warnings);
+  addSession(result.warnings);
+  createReceipt("Message", result.warnings, result.level);
 });
-$("loadDemo").addEventListener("click", () => {
-  setDemoMessage();
-  setDemoUrl();
-  $("message-check").scrollIntoView({ behavior: "smooth" });
+$("sampleMessage").addEventListener("click", () => {
+  $("messageInput").value = "URGENT: Your account will be suspended today. Verify your bank KYC immediately at https://example.invalid and share your OTP to claim a prize.";
+  $("messageInput").focus();
 });
-$("checkMessage").addEventListener("click", analyzeMessage);
-$("messageDemo").addEventListener("click", setDemoMessage);
 $("clearMessage").addEventListener("click", () => {
   $("messageInput").value = "";
-  updateMessageCount();
-  latestMessage = null;
-  $("messageResult").className = "result";
-  $("messageResult").textContent = "";
-  $("dnaDetails").replaceChildren();
-  $("messageMini").textContent = "NOT CHECKED";
-  setMeter("messageMeter", 0);
+  $("messageResult").classList.add("hidden");
+  $("messageInput").focus();
 });
-$("messageInput").addEventListener("input", updateMessageCount);
-$("checkUrl").addEventListener("click", analyzeUrl);
-$("urlDemo").addEventListener("click", setDemoUrl);
-$("clearUrl").addEventListener("click", () => {
-  $("urlInput").value = "";
-  latestUrl = null;
-  $("urlResult").className = "result";
-  $("urlResult").textContent = "";
-  $("urlDetails").replaceChildren();
-  $("urlMini").textContent = "NOT CHECKED";
-  setMeter("urlMeter", 0);
-});
-$("makeReceipt").addEventListener("click", makeReceipt);
-$("copyReceipt").addEventListener("click", copyReceipt);
-$("downloadReceipt").addEventListener("click", downloadReceipt);
-$("familyToggle").addEventListener("click", () => {
-  setFamilyMode($("familyToggle").getAttribute("aria-pressed") !== "true");
-});
-["fam1", "fam2", "fam3", "fam4", "fam5"].forEach((id) => $(id).addEventListener("change", updateFamilyProgress));
-$("quizNext").addEventListener("click", nextQuestion);
-$("restartQuiz").addEventListener("click", restartQuiz);
 
-updateMessageCount();
-renderQuiz();
+function inspectURL(raw) {
+  const reasons = [];
+  let parsed;
+  const candidate = raw.trim();
+  if (!candidate) return {error:"Paste a URL first."};
+  if (/\s/.test(candidate)) reasons.push("Contains whitespace, which can indicate a malformed or copied URL.");
+  if (/^(javascript|data|file|vbscript):/i.test(candidate))
+    return {warnings:1, level:"High risk signals", reasons:["Uses a non-web scheme that should not be opened as an ordinary website." ]};
+  if (!/^https?:\/\//i.test(candidate)) {
+    if (/^[a-z][a-z0-9+.-]*:/i.test(candidate))
+      return {warnings:1,level:"High risk signals",reasons:["Uses a scheme other than HTTP or HTTPS."]};
+  }
+  try {
+    parsed = new URL(candidate);
+    if (!["http:","https:"].includes(parsed.protocol))
+      return {warnings:1,level:"High risk signals",reasons:["Not a standard HTTP or HTTPS web address."]};
+  } catch {
+    return {error:"This does not look like a valid web URL. Include https:// if appropriate."};
+  }
+  const host = parsed.hostname.toLowerCase();
+  if (parsed.username || parsed.password)
+    reasons.push("Contains credentials before the @ symbol, which can disguise the apparent destination.");
+  if (parsed.protocol !== "https:")
+    reasons.push("Uses HTTP rather than encrypted HTTPS. This alone does not prove a scam.");
+  if (host.startsWith("xn--") || host.split(".").some(part => part.startsWith("xn--")))
+    reasons.push("Contains an internationalised hostname that may require careful visual inspection.");
+  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host))
+    reasons.push("Uses an IP address instead of a conventional domain name.");
+  if ((host.match(/\./g) || []).length >= 4)
+    reasons.push("Contains many subdomains; check which domain is actually registered.");
+  if (host.length > 55) reasons.push("Has an unusually long hostname.");
+  if (/(login|verify|secure|account|wallet|claim|bonus|gift|banking|update)/i.test(host))
+    reasons.push("Hostname includes words commonly used in account-themed lures; context matters.");
+  if (/%[0-9a-f]{2}/i.test(parsed.pathname))
+    reasons.push("Path contains encoded characters that may make the destination harder to read.");
+  const shorteners = ["bit.ly","tinyurl.com","t.co","cutt.ly","is.gd","shorturl.at"];
+  if (shorteners.includes(host))
+    reasons.push("Uses a link-shortening domain, so the final destination is not visible here.");
+  if (host === "localhost" || host.endsWith(".local") || host.endsWith(".invalid"))
+    reasons.push("Uses a local, reserved, or example-style hostname rather than a typical public website.");
+  if (!reasons.length)
+    reasons.push("No warning patterns from this small URL rule set were detected.");
+  const warnings = reasons.filter(x => !x.startsWith("No warning")).length;
+  return {
+    warnings,
+    level: warnings >= 3 ? "High risk signals" :
+           warnings >= 1 ? "Caution advised" : "No listed warning patterns",
+    reasons
+  };
+}
+$("scanUrl").addEventListener("click", () => {
+  const raw = $("urlInput").value;
+  const result = inspectURL(raw);
+  if (result.error) { toast(result.error); $("urlInput").focus(); return; }
+  renderResult("urlResult", "URL structure analysis", result.level, result.reasons, [
+    "Do not open the link just to test it.",
+    "Check the registered domain and the intended destination carefully.",
+    "Navigate to the official website independently instead of using the supplied link."
+  ], result.warnings);
+  addSession(result.warnings);
+  createReceipt("URL structure", result.warnings, result.level);
+});
+$("urlInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") $("scanUrl").click();
+});
+
+function updateChecklist(items, label, bar) {
+  const done = items.filter(x => x.checked).length;
+  $(label).textContent = `${done} of ${items.length} completed`;
+  $(bar).style.width = `${done / items.length * 100}%`;
+}
+const mediaChecks = [...document.querySelectorAll(".mediaCheck")];
+mediaChecks.forEach(x => x.addEventListener("change", () =>
+  updateChecklist(mediaChecks, "mediaProgress", "mediaBar")));
+const familyChecks = [...document.querySelectorAll(".familyCheck")];
+familyChecks.forEach(x => x.addEventListener("change", () =>
+  updateChecklist(familyChecks, "familyProgress", "familyBar")));
+
+// Cyber Arena: fixed educational questions, with one answer per question.
+const questions = [
+ {q:"A caller claims to be your bank and asks for your OTP. What is safest?",
+  options:["Read out the OTP","End the call and contact the bank through its official channel","Send the code by text"],
+  answer:1,why:"Legitimate verification should not require you to disclose an OTP to another person."},
+ {q:"You receive a prize message for a contest you never entered. What now?",
+  options:["Pay the release fee","Forward it to friends","Verify independently and avoid paying to claim it"],
+  answer:2,why:"Unexpected prizes and upfront fees are common scam patterns."},
+ {q:"A familiar person's account suddenly requests urgent money. What should you do?",
+  options:["Transfer immediately","Confirm using a different trusted contact method","Share your PIN first"],
+  answer:1,why:"Compromised accounts can impersonate people you know. Verify out of band."},
+ {q:"A link looks like your bank but has an extra word in the domain. Best action?",
+  options:["Check it carefully and navigate to the bank's official site yourself","Enter your password to test it","Trust it if the logo looks right"],
+  answer:0,why:"Logos can be copied. The real destination and independently verified route matter."},
+ {q:"A video shows a public figure making a shocking claim. What is safest?",
+  options:["Assume it is real","Share it before it disappears","Check the original source and credible independent reporting"],
+  answer:2,why:"Synthetic media and misleading edits exist. Context and corroboration are important."}
+];
+let qIndex = 0, qScore = 0, answered = false;
+function renderQuestion() {
+  const q = questions[qIndex];
+  $("quizTitle").textContent = `Challenge ${qIndex + 1}`;
+  $("quizProgress").textContent = `Question ${qIndex + 1} of ${questions.length}`;
+  $("quizQuestion").textContent = q.q;
+  $("quizOptions").innerHTML = "";
+  $("quizFeedback").classList.add("hidden");
+  $("nextQuestion").disabled = true;
+  answered = false;
+  q.options.forEach((option, i) => {
+    const btn = document.createElement("button");
+    btn.className = "quiz-option";
+    btn.textContent = `${String.fromCharCode(65+i)}. ${option}`;
+    btn.addEventListener("click", () => answerQuestion(i));
+    $("quizOptions").appendChild(btn);
+  });
+  $("nextQuestion").textContent = qIndex === questions.length - 1 ? "See final result →" : "Next question →";
+  $("quizScore").textContent = qScore;
+  $("quizBar").style.width = `${qScore / questions.length * 100}%`;
+}
+function answerQuestion(choice) {
+  if (answered) return;
+  answered = true;
+  const q = questions[qIndex];
+  const correct = choice === q.answer;
+  if (correct) qScore++;
+  [...$("quizOptions").children].forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.style.borderColor = "#55edc1";
+    if (i === choice && !correct) btn.style.borderColor = "#ff8c91";
+  });
+  $("quizFeedback").innerHTML = `<strong>${correct ? "Correct!" : "Not quite."}</strong><p>${escapeHTML(q.why)}</p>`;
+  $("quizFeedback").classList.remove("hidden");
+  $("nextQuestion").disabled = false;
+  $("quizScore").textContent = qScore;
+  $("quizBar").style.width = `${qScore / questions.length * 100}%`;
+  $("quizSummary").textContent = `${qScore} correct out of ${qIndex + 1} answered so far.`;
+}
+$("nextQuestion").addEventListener("click", () => {
+  if (!answered) return;
+  if (qIndex < questions.length - 1) {
+    qIndex++;
+    renderQuestion();
+  } else {
+    $("quizTitle").textContent = "Challenge complete";
+    $("quizProgress").textContent = "Finished";
+    $("quizQuestion").textContent = `You scored ${qScore} out of ${questions.length}.`;
+    $("quizOptions").innerHTML = "";
+    $("quizFeedback").innerHTML = `<strong>${qScore >= 4 ? "Great work!" : "Keep practising!"}</strong><p>Learn the warning signs and verify unexpected requests independently.</p>`;
+    $("quizFeedback").classList.remove("hidden");
+    $("nextQuestion").disabled = true;
+    $("nextQuestion").textContent = "Completed";
+    $("quizSummary").textContent = `Final result: ${qScore}/${questions.length}.`;
+  }
+});
+$("restartQuiz").addEventListener("click", () => {
+  qIndex = 0; qScore = 0; renderQuestion();
+  $("quizSummary").textContent = "Complete the challenge to see your result.";
+});
+renderQuestion();
+
+// Receipt actions: the original message and URL are never included.
+$("copyReceipt").addEventListener("click", async () => {
+  if (!lastReceipt) return;
+  try {
+    await navigator.clipboard.writeText(lastReceipt);
+    toast("Receipt copied.");
+  } catch {
+    const box = document.createElement("textarea");
+    box.value = lastReceipt;
+    box.setAttribute("readonly", "");
+    box.style.position = "fixed"; box.style.opacity = "0";
+    document.body.appendChild(box); box.select();
+    const ok = document.execCommand("copy");
+    box.remove();
+    toast(ok ? "Receipt copied." : "Copy unavailable. Select the receipt text manually.");
+  }
+});
+$("downloadReceipt").addEventListener("click", () => {
+  if (!lastReceipt) return;
+  const blob = new Blob([lastReceipt], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "scamshield-trust-receipt.txt";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+$("resetSession").addEventListener("click", () => {
+  sessionScans = 0; sessionWarnings = 0;
+  $("sessionScans").textContent = "0";
+  $("actualScans").textContent = "0";
+  $("actualWarnings").textContent = "0";
+  toast("Session analytics reset.");
+});
+
+// Illustrative chart drawn locally; includes no external chart library.
+function drawDemoChart() {
+  const canvas = $("demoChart");
+  const rect = canvas.getBoundingClientRect();
+  if (!rect.width) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.round(rect.width * dpr);
+  canvas.height = Math.round(180 * dpr);
+  const ctx = canvas.getContext("2d");
+  ctx.scale(dpr, dpr);
+  const w = rect.width, h = 180;
+  ctx.clearRect(0, 0, w, h);
+  const values = [28,45,37,64,52,79,61];
+  const labels = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const left = 26, right = 12, top = 18, bottom = 28;
+  const chartH = h - top - bottom, chartW = w - left - right;
+  ctx.font = "11px system-ui";
+  ctx.strokeStyle = "#244538"; ctx.fillStyle = "#96b4a5";
+  ctx.lineWidth = 1;
+  for (let i=0;i<4;i++) {
+    const y = top + chartH * i / 3;
+    ctx.beginPath(); ctx.moveTo(left,y); ctx.lineTo(w-right,y); ctx.stroke();
+    ctx.fillText(String(90 - i*30), 0, y+4);
+  }
+  const points = values.map((v,i)=>({
+    x:left + chartW*i/(values.length-1),
+    y:top + chartH*(1-v/90)
+  }));
+  const grad = ctx.createLinearGradient(0,top,0,h-bottom);
+  grad.addColorStop(0,"#4de7bd66"); grad.addColorStop(1,"#4de7bd00");
+  ctx.beginPath(); ctx.moveTo(points[0].x,h-bottom);
+  points.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(points[points.length-1].x,h-bottom); ctx.closePath();
+  ctx.fillStyle=grad; ctx.fill();
+  ctx.beginPath(); points.forEach((p,i)=>i ? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
+  ctx.strokeStyle="#55edc1";ctx.lineWidth=2.5;ctx.stroke();
+  points.forEach((p,i)=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);
+    ctx.fillStyle="#a7f3b6";ctx.fill();
+    ctx.fillStyle="#96b4a5";ctx.textAlign="center";
+    ctx.fillText(labels[i],p.x,h-7);
+  });
+}
+if ("ResizeObserver" in window) {
+  new ResizeObserver(drawDemoChart).observe($("demoChart"));
+} else {
+  window.addEventListener("resize", drawDemoChart);
+}
+drawDemoChart();
 </script>
 </body>
 </html>
