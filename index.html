@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>AI Avengers | ScamShield</title>
+<style>
+:root{--bg:#071426;--panel:#10233b;--panel2:#142b46;--text:#edf5ff;--muted:#a8bdd5;--blue:#37b7ff;--line:#29425e;--green:#39d6a0;--yellow:#ffca62;--red:#ff7185}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#15385b 0,#071426 44%);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);min-height:100vh}
+.wrap{max-width:760px;margin:auto;padding:20px 15px 38px}.brand{display:flex;align-items:center;gap:12px;margin:6px 0 22px}.logo{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:28px;font-weight:900;color:white;background:linear-gradient(145deg,#28c5ff,#2857c7);box-shadow:0 8px 24px #0088ff40}.brand h1{font-size:21px;letter-spacing:.7px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px;letter-spacing:1.2px}.hero h2{font-size:29px;line-height:1.12;margin:0 0 9px}.hero p{color:var(--muted);line-height:1.55;margin:0 0 20px}.pill{display:inline-block;font-size:11px;border:1px solid #32618c;color:#91d8ff;border-radius:99px;padding:5px 9px;margin-bottom:12px;letter-spacing:.7px}.card{background:linear-gradient(160deg,#112740,#0d1d31);border:1px solid var(--line);border-radius:20px;padding:17px;margin:15px 0;box-shadow:0 12px 28px #0002}.label{display:block;font-size:14px;font-weight:700;margin:0 0 10px}textarea{width:100%;min-height:155px;resize:vertical;background:#08172a;border:1px solid #35516e;border-radius:13px;color:var(--text);padding:13px;font:inherit;line-height:1.5;outline:none}textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #37b7ff20}.hint{font-size:12px;color:var(--muted);line-height:1.5;margin:9px 0 0}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button{border:0;border-radius:12px;padding:12px 16px;font:inherit;font-weight:750;cursor:pointer}.primary{background:linear-gradient(100deg,#36c5ff,#3976ff);color:#041225;flex:1}.secondary{background:#1a3049;color:var(--text);border:1px solid #35516e}.result{display:none}.result.show{display:block}.risk{display:flex;align-items:center;gap:12px}.riskIcon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:#263a50}.risk h3{margin:0;font-size:20px}.risk p{margin:3px 0 0;color:var(--muted);font-size:13px}.meter{height:8px;background:#263b52;border-radius:99px;overflow:hidden;margin:17px 0 7px}.meter span{display:block;height:100%;width:0%;border-radius:99px;transition:width .3s}.scoreline{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.sectionTitle{font-size:15px;margin:18px 0 9px}.signals{display:grid;gap:8px}.signal{display:flex;gap:9px;background:#0a1a2d;border:1px solid #203a55;padding:10px;border-radius:11px;font-size:13px;line-height:1.4}.dot{font-weight:900;color:var(--yellow)}.signal.good .dot{color:var(--green)}.safe{color:var(--muted);font-size:13px;line-height:1.55}.footer{text-align:center;color:#8099b5;font-size:11px;line-height:1.6;padding:10px}.tag{font-size:10px;border:1px solid #38516c;border-radius:6px;padding:3px 6px;color:#b6cce2;margin-left:6px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="brand">
+    <div class="logo">A<span style="font-size:15px">I</span></div>
+    <div><h1>AI AVENGERS <span class="tag">PROJECT SEVA</span></h1><p>INTELLIGENCE • INNOVATION • IMPACT</p></div>
+  </header>
+  <section class="hero">
+    <span class="pill">SCAMSHIELD • PROTOTYPE 1.0</span>
+    <h2>Pause. Check.<br><span style="color:var(--blue)">Stay protected.</span></h2>
+    <p>Paste a suspicious SMS, WhatsApp message, or email. ScamShield checks for common warning signs and explains safer next steps.</p>
+  </section>
+  <section class="card">
+    <label class="label" for="message">Suspicious message</label>
+    <textarea id="message" placeholder="Paste the message here…&#10;&#10;Example: Your bank account will be blocked today. Click this link and enter your OTP to verify."></textarea>
+    <p class="hint">Privacy-first demo: analysis happens in this page. The message is not uploaded or sent to a server.</p>
+    <div class="buttons">
+      <button class="primary" id="analyze">Check message</button>
+      <button class="secondary" id="sample">Try sample</button>
+      <button class="secondary" id="clear">Clear</button>
+    </div>
+  </section>
+  <section class="card result" id="result" aria-live="polite">
+    <div class="risk">
+      <div class="riskIcon" id="riskIcon">!</div>
+      <div><h3 id="riskTitle">Review needed</h3><p id="riskSub">Preliminary warning-sign check</p></div>
+    </div>
+    <div class="meter"><span id="bar"></span></div>
+    <div class="scoreline"><span>Warning-sign indicator</span><strong id="score">0 / 100</strong></div>
+    <h4 class="sectionTitle">What we noticed</h4>
+    <div class="signals" id="signals"></div>
+    <h4 class="sectionTitle">Safer next steps</h4>
+    <p class="safe" id="advice"></p>
+    <p class="hint"><strong>Important:</strong> This prototype uses simple text rules, not a trained AI model. A high score does not prove a scam, and a low score does not prove a message is safe.</p>
+  </section>
+  <section class="card">
+    <h3 style="margin:0 0 8px;font-size:16px">Quick safety checklist</h3>
+    <div class="signals">
+      <div class="signal"><span class="dot">✓</span><span>Never share OTPs, PINs, passwords, or recovery codes.</span></div>
+      <div class="signal"><span class="dot">✓</span><span>Verify urgent requests using a known, independent phone number.</span></div>
+      <div class="signal"><span class="dot">✓</span><span>Do not open unexpected links or install apps at a caller's request.</span></div>
+      <div class="signal"><span class="dot">✓</span><span>If money was lost in India, contact your bank promptly and call cybercrime helpline 1930; report at cybercrime.gov.in.</span></div>
+    </div>
+  </section>
+  <div class="footer">Built by AI Avengers • Educational demonstration only<br>Designed to support careful decisions, not replace verification.</div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const sample = "URGENT! Your bank account will be blocked today. Click http://bank-verify.example and enter your OTP immediately to avoid suspension.";
+const checks = [
+ {name:"Urgency or pressure",re:/urgent|immediately|within \d+ minutes?|act now|last warning|today only|account.{0,20}(blocked|suspended|closed)|will be blocked|final notice/i,points:20,why:"The message pressures you to act quickly or threatens account suspension."},
+ {name:"Requests sensitive information",re:/otp|one.time password|password|pin\b|cvv|card number|bank details|verification code|recovery code/i,points:25,why:"It mentions sensitive credentials or codes. Never share these with someone who contacts you."},
+ {name:"Payment or money pressure",re:/send money|transfer (money|funds)|pay now|processing fee|prize fee|gift card|upi pin|refund.{0,30}(fee|payment)|pay.{0,20}(to receive|to claim)/i,points:25,why:"It may be asking for money or linking payment to a promise or threat."},
+ {name:"Link or shortened URL",re:/https?:\/\/|www\.|bit\.ly|tinyurl|t\.co\//i,points:15,why:"It contains a link. Unexpected links can lead to fake sign-in pages or downloads."},
+ {name:"Impersonation or prize bait",re:/pretend to be|your son|your daughter|family emergency|i am (the )?(bank|police|customs)|won (a|the) prize|lottery winner|free gift|kyc.{0,20}(expire|update|verify)/i,points:20,why:"It resembles common impersonation, prize, or account-verification lures."},
+ {name:"Unusual secrecy or remote access",re:/don't tell anyone|keep this secret|install (this )?app|screen sharing|remote access|anydesk|teamviewer/i,points:20,why:"It encourages secrecy or remote access, which can be used to control a device or pressure a victim."}
+];
+function analyze(){
+ const text=$("message").value.trim();
+ if(!text){$("message").focus();return}
+ const found=checks.filter(c=>c.re.test(text));
+ const score=Math.min(100,found.reduce((s,c)=>s+c.points,0));
+ let title,sub,color,icon;
+ if(score>=50){title="High warning signs";sub="Pause and verify independently";color="var(--red)";icon="⚠"}
+ else if(score>=20){title="Some warning signs";sub="Treat cautiously and verify";color="var(--yellow)";icon="!"}
+ else {title="Few warning signs detected";sub="This does not mean the message is safe";color="var(--green)";icon="✓"}
+ $("riskTitle").textContent=title;$("riskSub").textContent=sub;$("riskIcon").textContent=icon;$("riskIcon").style.color=color;
+ $("bar").style.width=score+"%";$("bar").style.background=color;$("score").textContent=score+" / 100";
+ const list=$("signals");list.innerHTML="";
+ if(found.length){found.forEach(c=>{const el=document.createElement("div");el.className="signal";const dot=document.createElement("span");dot.className="dot";dot.textContent="!";const body=document.createElement("span");const strong=document.createElement("strong");strong.textContent=c.name+" — ";body.append(strong,document.createTextNode(c.why));el.append(dot,body);list.append(el)})}
+ else {const el=document.createElement("div");el.className="signal good";el.textContent="No common warning patterns were found in this simple check. Scams can still look normal or use new tactics.";list.append(el)}
+ $("advice").textContent=score>=20?"Do not click links, share codes, or send money yet. Contact the organization or person through a phone number or website you already trust. Ask a trusted adult or knowledgeable person if unsure.":"Still verify the sender independently before acting. Never share OTPs, PINs, or passwords, and avoid unexpected links or downloads.";
+ $("result").classList.add("show");$("result").scrollIntoView({behavior:"smooth",block:"start"});
+}
+$("analyze").addEventListener("click",analyze);
+$("sample").addEventListener("click",()=>{$("message").value=sample;analyze()});
+$("clear").addEventListener("click",()=>{$("message").value="";$("result").classList.remove("show");$("message").focus()});
+</script>
+</body>
+</html>
